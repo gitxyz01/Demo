@@ -1,0 +1,161 @@
+﻿@model WebUI.Models.HomeIndexViewModel
+@{
+    ViewBag.Title = "SearchProduct";
+    Layout = "~/Views/Shared1/_Layout.cshtml";
+}
+
+
+
+<script src="~/Content1/plugins/pagingcontrol/jquery.simplePagination.js"></script>
+<link href="~/Content1/plugins/pagingcontrol/simplePagination.css" rel="stylesheet" />
+<link href="~/Content1/plugins/price-range/price-range.css" rel="stylesheet" />
+<script src="~/Content1/plugins/price-range/price-range.js"></script>
+<script src="~/Scripts1/DisplayProduct/DisplayProduct.js"></script>
+<link href="~/Content1/display-product/display-product-view.css" rel="stylesheet" />
+
+<h2>SearchProduct</h2>
+<div class="columns-container">
+    <div id="columns" class="container">
+        <div class="breadcrumb clearfix">
+            <a class="home" href="/" title="Trở về Trang chủ">
+                <i class="fa fa-home"></i>
+            </a>
+            <span class="navigation-pipe">&gt;</span>
+            @Model.TenDanhMuc
+        </div><!-- breadcrumb -->
+        <div class="row">
+            <!-- content -->
+            <div class="large-left col-sm-12">
+                <div class="row">
+                    <div id="center_column" class="center_column col-xs-12 col-sm-9 accordionBox">
+                        <h1 class="page-heading product-listing">
+                            <span class="cat-name">@Model.TenDanhMuc </span>
+                        </h1> <!-- title category panel -->
+                        <div class="" style="display:inline-block;"> Có @Model.PagingInfo.TotalItem Sản Phẩm Được Tìm Thấy</div>
+
+                        <div class="content_sortPagiBar clearfix">
+                            <!-- content filter-display bar -->
+                            <div class="sortPagiBar clearfix">
+                                <span class=" display hidden-xs"></span>
+                                @*<div class="form-group">
+                                        <label>Sắp xếp theo</label>
+                                        @Html.DropDownList("SortProductOptionsSelectListItems")
+                                    </div>
+                                *@
+
+
+                            </div><!-- display-content bar -->
+                            <div class="top-pagination-content clearfix">
+                                <div class="col-xs-12 col-sm-12">
+                                    <ul class="pagination" id="pager">
+                                        @for (int i = 1; i <= Model.PagingInfo.TotalPage; i++)
+                                        {
+                                            <li class="@(i==Model.PagingInfo.CurrentPage? "active":"")">
+                                                <a href="@Url.Action("SearchProduct","Product",new {page=i,searchString = ViewBag.CurentSearchString })">@i</a>
+                                            </li>
+                                        }
+                                    </ul>
+                                </div>
+                            </div><!-- pagination-content bar -->
+                        </div><!-- sort bar -->
+
+
+
+                        @Html.Partial("ListProduct", Model.Sanphams)
+
+
+                        <!-- list product -->
+                        <div class="content_sortPagiBar">
+                            <div class="bottom-pagination-content clearfix">
+                                <div class="col-xs-12 col-sm-12">
+                                    <ul class="pagination" id="pager">
+                                        @for (int i = 1; i <= Model.PagingInfo.TotalPage; i++)
+                                        {
+
+                                        }
+                                    </ul>
+                                </div>
+                            </div>
+                        </div><!-- sort bar -->
+                    </div><!-- list product panel -->
+                    <div id="left_column" class="column col-xs-12 col-sm-3">
+                        <section id="layered_block_left" class="block">
+                            <h4 class="title_block">DANH MỤC</h4>
+                            <div class="block_content">
+                                @using (Html.BeginForm("SearchProductByPrice", "Product", FormMethod.Post, new { @id = "layered_form", enctype = "multipart/form-data" }))
+                                {
+                                    @Html.ValidationSummary()
+                                    <div>
+                                        <div class="layered_filter">
+                                            <div class="layered_subtitle_heading">
+                                                <span class="layered_subtitle">Danh mục sản phẩm</span>
+                                            </div>
+                                            @{Html.RenderAction("_HomeMenuCategoryPartial", "Home");}
+                                        </div>
+                                        @*<div class="layered_filter">
+                                                <div class="layered_subtitle_heading">
+                                                    <span class="layered_subtitle">Thương hiệu</span>
+
+                                                </div>
+                                                @*<ul class="col-lg-12 layered_filter_ul">
+                                                    @foreach (var brand in @Model.Brands)
+                                                    {
+                                                        <li class="nomargin col-lg-12">
+                                                            <label><input type="checkbox" class="ckb-brand-filtercontent" data-id=@brand.Id> @brand.Name</label>
+                                                        </li>
+                                                    }
+                                                </ul>*
+                                            </div>*@
+                                        <div class="layered_price clearfix" style="">
+                                            <div class="layered_subtitle_heading">
+                                                <span class="layered_subtitle">Giá</span>
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Tu</label>
+                                                <div class="col-sm-5">
+                                                    <input type="number" name="minPrice" min="0" step="500000" required />
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label>Den</label>
+                                                <div class="col-sm-5">
+                                                    <input type="number" name="maxPrice" max="10000000" step="500000" required />
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <button type="submit" class="btn btn-default button-search">
+                                                    <span>Search</span>
+                                                </button>
+                                            </div>
+                                            @*<div class="col-lg-12 layered_filter_ul">
+                                                    <div class="price-range-input-panel">
+                                                        <input type="text" class="span2" value="" data-slider-min="0" data-slider-max="50000000" data-slider-step="100000" data-slider-value="[200000,20000000]" id="Sl_PriceRange">
+                                                        <br />
+                                                        <b class="pull-left">0 Đ</b> <b class="pull-right">50.000.000 Đ</b>
+                                                    </div>
+                                                    <div class="btn-filter-after-price-wrapper">
+                                                        <a id="Btn_FilterAfterPrice" class="btn-filter-after-price">
+                                                            <i class="fa fa-filter"></i>
+                                                        </a>
+                                                    </div>
+                                                </div>*@
+                                        </div>
+                                    </div>
+
+                                }
+
+                            </div>
+                        </section>
+                        <section id="new-products_block_right" class="block products_block">
+                            @Html.Partial("VerticalListProductBar", (IEnumerable<Domain.Concrete.SanPham>)@ViewBag.NewProducts, new ViewDataDictionary { { "Title", "Sản phẩm mới" } })
+                        </section>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    DisplayProductManagement.init(@Model.CurentCategory,@Model.CurentCategory);
+</script>

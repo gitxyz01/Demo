@@ -1,0 +1,166 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Đá Phong Thủy</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="content-language" content="vi" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    @*<meta name="Description" content="Xavia Decor là của hàng kinh doanh các sản phẩm trang trí nội thất nhập khẩu và nội địa có chất lượng cao, hoạt động từ cuối năm 2015. Trong suổt thời gian hoạt động từ khi thành lập, Cửa hàng chúng tôi đã nỗ lực không ngừng để có sự tăng trưởng liên tục và thành tích kinh doanh ấn tượng. Đến nay, Xavia Décor đã thực sự trở thành nhà cung cấp các sản phẩm trang trí nội thất hàng đầu với các thương hiệu sản phẩm uy tính với người tiêu dùng.">
+        <meta name="Keywords" content="xavia, trang trí nội thất, nội thất, đồ trang trí nội thất, trang tri noi that, noi that, do trang tri noi that">
+        <meta property="og:type" content="website">
+        <meta property="og:url" content="http://xaviadecor.com">
+        <meta property="og:title" content="Xavia Decor - Chuyên cung cấp đồ trang trí nội thất cao cấp">
+        <meta property="og:image" content="http://xaviadecor.com/Content/Images/Banners/XaviaLogo.png">
+        <meta property="og:site_name" content="Xavia Decor">
+        <meta property="og:description" content="Xavia Decor - Chuyên cung cấp đồ trang trí nội thất cao cấp">*@
+    <meta name="robots" content="index, follow">
+    <meta name="googlebot" content="index, follow">
+    <link rel="icon" type="image/ico" href="~/Content/Images/Banners/faviorIcon.jpg">
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+
+    @Styles.Render("~/Content/bootstrap")
+
+
+
+    <link href="~/Content/common.css" rel="stylesheet" />
+
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    @*<link rel="stylesheet" href="~/Content1/bootstrap.min.css" media="all">*@
+    <link rel="stylesheet" href="~/Content1/css/global.css" media="all">
+    <link rel="stylesheet" href="~/Content1/css/highdpi.css" media="all">
+    <link rel="stylesheet" href="~/Content1/css/responsive-tables.css" media="all">
+    <link rel="stylesheet" href="~/Content1/css/uniform.default.css" media="all">
+    <link rel="stylesheet" href="~/Content1/css/jquery.fancybox.css" media="all">
+    <link rel="stylesheet" href="~/Content1/css/product_list.css" media="all">
+    <link rel="stylesheet" href="~/Content1/css/blockcart.css" media="all">
+    <link rel="stylesheet" href="~/Content1/css/jquery.bxslider.css" media="all">
+    <link rel="stylesheet" href="~/Content1/css/blockcategories.css" media="all">
+    <link rel="stylesheet" href="~/Content1/css/blockcurrencies.css" media="all">
+    <link rel="stylesheet" href="~/Content1/css/blocklanguages.css" media="all">
+    <link rel="stylesheet" href="~/Content1/css/blocknewsletter.css" media="all">
+    <link rel="stylesheet" href="~/Content1/css/blocktags.css" media="all">
+    <link rel="stylesheet" href="~/Content1/css/blockviewed.css" media="all">
+    <link rel="stylesheet" href="~/Content1/css/homeslider.css" media="all">
+    <link rel="stylesheet" href="~/Content1/css/hooks.css" media="all">
+    <link rel="stylesheet" href="~/Content1/css/blockwishlist.css" media="all">
+    <link rel="stylesheet" href="~/Content1/css/productcomments.css" media="all">
+    <link rel="stylesheet" href="~/Content1/css/blockpermanentlinks.css" media="all">
+    <link rel="stylesheet" href="~/Content1/css/smartblogstyle.css" media="all">
+    <link rel="stylesheet" href="~/Content1/css/smartbloglatestnews.css" media="all">
+    <link rel="stylesheet" href="~/Content1/css/smartblogtags.css" media="all">
+    <link rel="stylesheet" href="~/Content1/css/front.css" media="all">
+    <link rel="stylesheet" href="~/Content1/css/tmmegamenu.css" media="all">
+    <link rel="stylesheet" href="~/Content1/css/tmnewsletter.css" media="all">
+    <link rel="stylesheet" href="~/Content1/css/tmproductvideos.css" media="all">
+    <link rel="stylesheet" href="~/Content1/css/tmrelatedproducts.css" media="all">
+    <link rel="stylesheet" href="~/Content1/css/tmsearch.css" media="all">
+    <link rel="stylesheet" href="~/Content1/css/jquery.autocomplete.css" media="all">
+    <link rel="stylesheet" href="~/Content1/css/front(1).css" media="all">
+    <link rel="stylesheet" href="~/Content1/css/front(2).css" media="all">
+    <link rel="stylesheet" href="~/Content1/css/live_configurator.css" media="all">
+    <link rel="stylesheet" href="~/Content1/css/themeconfiglink.css" media="all">
+    <link rel="stylesheet" href="~/Content1/css/cms.css" />
+    <link rel="stylesheet" href="~/Content1/css/category.css" />
+    <link rel="stylesheet" href="~/Content1/css/jquery.ui.slider.css" />
+    <link rel="stylesheet" href="~/Content1/css/jquery.ui.theme.css" />
+    <link rel="stylesheet" href="~/Content1/css/blocklayered.css" />
+    <link rel="stylesheet" href="~/Content1/css/css.css" type="text/css" media="all">
+    <link rel="stylesheet" href="~/Content1/css/css(1).css" type="text/css">
+    <link rel="stylesheet" href="~/Content1/css/css(2).css" type="text/css">
+    <link id="habla_style_div" type="text/css" rel="stylesheet" href="~/Content1/css/cbb092d6554938a9549cb716ffcb1f94.css">
+    <link href="~/Content1/css/contact-form.css" rel="stylesheet" />
+
+    <script type="text/javascript" src="~/Scripts1/js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="~/Scripts1/js/jquery-migrate-1.2.1.min.js"></script>
+    <script type="text/javascript" src="~/Scripts1/js/jquery.easing.js"></script>
+    <script type="text/javascript" src="~/Scripts1/js/tools.js"></script>
+    <script type="text/javascript" src="~/Scripts1/js/global.js"></script>
+    <script type="text/javascript" src="~/Scripts1/js/10-bootstrap.min.js"></script>
+    <script type="text/javascript" src="~/Scripts1/js/14-device.min.js"></script>
+    <script type="text/javascript" src="~/Scripts1/js/15-jquery.total-storage.min.js"></script>
+    <script type="text/javascript" src="~/Scripts1/js/16-jquery.scrollmagic.min.js"></script>
+    <script type="text/javascript" src="~/Scripts1/js/17-jquery.scrollmagic.debug.js"></script>
+    <script type="text/javascript" src="~/Scripts1/js/18-TimelineMax.min.js"></script>
+    <script type="text/javascript" src="~/Scripts1/js/19-TweenMax.min.js"></script>
+    <script type="text/javascript" src="~/Scripts1/js/jquery.fittext.js"></script>
+    <script type="text/javascript" src="~/Scripts1/js/jquery.fancybox.js"></script>
+    <script type="text/javascript" src="~/Scripts1/js/products-comparison.js"></script>
+    <script type="text/javascript" src="~/Scripts1/js/ajax-cart.js"></script>
+    <script type="text/javascript" src="~/Scripts1/js/jquery.scrollTo.js"></script>
+    <script type="text/javascript" src="~/Scripts1/js/jquery.serialScroll.js"></script>
+    <script type="text/javascript" src="~/Scripts1/js/jquery.bxslider.js"></script>
+    <script type="text/javascript" src="~/Scripts1/js/treeManagement.js"></script>
+    <script type="text/javascript" src="~/Scripts1/js/blocknewsletter.js"></script>
+    <script type="text/javascript" src="~/Scripts1/js/homeslider.js"></script>
+    <script type="text/javascript" src="~/Scripts1/js/ajax-wishlist.js"></script>
+    <script type="text/javascript" src="~/Scripts1/js/validate.js"></script>
+    <script type="text/javascript" src="~/Scripts1/js/front.js"></script>
+    <script type="text/javascript" src="~/Scripts1/js/hoverIntent.js"></script>
+    <script type="text/javascript" src="~/Scripts1/js/superfish.js"></script>
+    <script type="text/javascript" src="~/Scripts1/js/tmmegamenu.js"></script>
+    <script type="text/javascript" src="~/Scripts1/js/tmrelatedproducts.js"></script>
+    <script type="text/javascript" src="~/Scripts1/js/jquery.autocomplete.js"></script>
+    <script type="text/javascript" src="~/Scripts1/js/tmsearch.js"></script>
+    <script type="text/javascript" src="~/Scripts1/js/front(3).js"></script>
+    <script type="text/javascript" src="~/Scripts1/js/front(4).js"></script>
+    <script type="text/javascript" src="~/Scripts1/js/index.js"></script>
+    <script src="~/Content1/plugins/spin/spin.min.js"></script>
+
+    <link rel="stylesheet" href="~/Content1/css/site.css" type="text/css" media="all">
+    <link href="~/Content1/css/site1.css" rel="stylesheet" type="text/css">
+    <link href="~/Content1/css/site2.css" rel="stylesheet" type="text/css">
+    <link href="~/Content1/Site.css" rel="stylesheet" type="text/css">
+    <!--[if IE 8]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+            <![endif]-->
+    <script type="text/javascript">
+        var FancyboxI18nClose = 'Close';
+        var FancyboxI18nNext = 'Next';
+        var FancyboxI18nPrev = 'Previous';
+        var homeslider_loop = 1;
+        var homeslider_pause = 6000;
+        var homeslider_speed = 800;
+        var homeslider_width = 10000;
+        window.$zopim || (function (d, s) {
+            var z = $zopim = function (c) { z._.push(c) }, $ = z.s =
+                d.createElement(s), e = d.getElementsByTagName(s)[0]; z.set = function (o) {
+                    z.set.
+                        _.push(o)
+                }; z._ = []; z.set._ = []; $.async = !0; $.setAttribute("charset", "utf-8");
+            $.src = "//v2.zopim.com/?44aDRKdTeAi0CLA4pcI782rgMIYF91xZ"; z.t = +new Date; $.
+                type = "text/javascript"; e.parentNode.insertBefore($, e)
+        })(document, "script");
+
+        $(document).ready(function () {
+            $("#to_top").click(function () { $("body,html").animate({ scrollTop: 0 }, "normal") })
+        });
+
+    </script>
+</head>
+<body id="index" class="index hide-left-column hide-right-column lang_en one-column">
+    <div id="page">
+        @Html.Action("_HeaderPartial", "Home", new { area = "" })
+        <br />
+        <br />
+        <div class="columns-container">
+            @RenderBody()
+        </div>
+        @RenderPage("_FooterPartial.cshtml")
+    </div>
+    <a href="javascript:;" id="to_top">
+        <img src="/Content1/Images/icon_gototop.png" title="Xavia Decor" alt="Xavia Decor - Chuyên cung cấp đồ trang trí nội thất cao cấp">
+    </a>
+</body>
+
+</html>

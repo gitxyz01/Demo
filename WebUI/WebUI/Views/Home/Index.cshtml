@@ -1,0 +1,145 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared1/_Layout.cshtml";
+}
+
+<div id="columns" class="container">
+    <div id="slider_row" class="row">
+        <div id="top_column" class="center_column col-xs-12 col-sm-12">
+
+            @*  @Html.Action("BannerPartial")*@
+
+            <div id="htmlcontent_top">
+                <ul class="htmlcontent-home clearfix row">
+                    <li class="htmlcontent-item-1 col-xs-4">
+                        <a href="/News/Index/11" class="item-link active_hover" title="" style="font-size: 32px!important;">
+                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSymRQyUZM_1nnzgcDy_kR3yVXpqavjyJlkfhVTWYBgXRXWowTF" class="item-img" title="" alt="" width="100%" height="100%">
+                            <div class="item-html">
+                                <h3>Phong cách hiện đại</h3>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="htmlcontent-item-2 col-xs-4">
+                        <a href="/News/Index/12" class="item-link active_hover" title="" style="font-size: 32px!important;">
+                            <img src="https://farm5.staticflickr.com/4369/36226177872_9f5b18ccbe_b.jpg" class="item-img" title="" alt="" width="100%" height="100%">
+                            <div class="item-html">
+                                <h3>Phong cách cổ điển</h3>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="htmlcontent-item-3 col-xs-4">
+                        <a href="/News/Index/9" class="item-link active_hover" title="" style="font-size: 32px!important;">
+                            <img src="https://eropi.com/media/wysiwyg/tin_tuc_3/nhung-kien-thuc-chung-ve-da-phong-thuy_1_.jpg" class="item-img" title="" alt="" width="100%" height="100%">
+                            <div class="item-html">
+                                <h3>Trang trí nội thất</h3>
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="large-left col-sm-12">
+            <div class="row">
+                <div id="center_column" class="center_column col-xs-12 col-sm-12 accordionBox">
+                    <ul id="home-page-tabs" class="nav nav-tabs clearfix">
+                        <li class="blocknewproducts active"><a data-toggle="tab" href="#blocknewproducts" class="blocknewproducts">Sản phẩm mới</a></li>
+                        <li class="blockbestsellers"><a data-toggle="tab" href="#blockbestsellers" class="blockbestsellers">Sản phẩm HOT</a></li>
+                        <li class="classicstyle"><a data-toggle="tab" href="#classicstyle" class="classicstyle">Sản Phẩm Khuyến Mãi</a></li>
+                        <li class="modelstyle"><a data-toggle="tab" href="#modelstyle" class="modelstyle">Phong cách hiện đại</a></li>
+                    </ul>
+                    <div class="tab-content">
+                        <ul id="blocknewproducts" class="product_list grid row blocknewproducts tab-pane active">
+                            @Html.Partial("ListFeatureProducts", (List<Domain.Concrete.SanPham>)ViewBag.NewProducts)
+                        </ul>
+                        <ul id="blockbestsellers" class="product_list grid row blockbestsellers tab-pane">
+                            @Html.Partial("ListFeatureProducts", (List<Domain.Concrete.SanPham>)ViewBag.Hotproducts)
+                        </ul>
+                        <ul id="classicstyle" class="product_list grid row blockbestsellers tab-pane">
+                            @{Html.RenderAction("_HomeSaleProductPartial", "Home");}
+                        </ul>
+                        @*
+        <ul id="classicstyle" class="product_list grid row classicstyle tab-pane">
+            @Html.Partial("ListFeatureProducts", (IEnumerable<OnlineStore.Model.ViewModel.ProductSummaryView>)ViewBag.ClassicStyleProductList)
+        </ul>
+
+        <ul id="modelstyle" class="product_list grid row modelstyle tab-pane">
+            @Html.Partial("ListFeatureProducts", (IEnumerable<OnlineStore.Model.ViewModel.ProductSummaryView>)ViewBag.ModernStyleProductList)
+        </ul>
+                        *@
+                    </div>
+
+                    @*     <div class="home-column">
+            <div id="htmlcontent_home">
+                <ul class="htmlcontent-home clearfix row">
+                    <li class="htmlcontent-item-1 col-xs-12">
+                        @if (ViewBag.Banner2 != null)
+                        {
+                            var banner2 = (OnlineStore.Model.ViewModel.BannerViewModel)ViewBag.Banner2;
+
+                            <a href="#" class="item-link active_hover" title="" style="font-size: 43.6949px;">
+                                <img src="@banner2.ImagePath" clas class="item-img" title="" alt="" width="100%" height="100%">
+                                <div class="item-html">
+                                    <h4>2016</h4>
+                                    <h3>Bộ sưu tập mới</h3>
+                                </div>
+                            </a>
+                        }
+                    </li>
+                </ul>
+            </div>
+
+            @Html.Action("BlogPartial")
+        </div> *@
+                </div>
+                   
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="home-column">
+    </div>
+    @*
+        @if (ViewBag.BannerPopup != null)
+        {
+            var bannerPopup = (OnlineStore.Model.ViewModel.BannerViewModel)ViewBag.BannerPopup;
+            <div style="display:none">
+                <a id="bannerPopup" rel="group" href="@bannerPopup.ImagePath" title="@bannerPopup.Name">
+                    <img src="@bannerPopup.ImagePath" alt="" />
+                </a>
+            </div>
+        }
+    *@
+    <script>
+        $(document).ready(function () {
+
+            function showFancyBox() {
+                if ($("#bannerPopup").length > 0) {
+                    $("#bannerPopup").fancybox();
+                    $("#bannerPopup").trigger('click');
+                    $(".fancybox-overlay").unbind();
+                }
+            }
+            showFancyBox();
+
+            $("#SearchProduct_Btn").unbind("click").bind("click", function (e) {
+                searchProduct();
+            });
+            $("#tmsearch #tm_search_query").unbind("keypress").bind("keypress", function (e) {
+                if (e.keyCode == 13) {
+                    searchProduct();
+                }
+            });
+
+            function searchProduct() {
+                var searchString = $("#tmsearch #tm_search_query").val();
+                window.location.replace("/Product/SearchProduct?searchString=" + searchString);
+            }
+        });
+    </script>
+
+
+

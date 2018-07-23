@@ -1,0 +1,131 @@
+﻿@using WebUI.Models
+@model AdminProductListModel
+
+@{
+    ViewBag.Title = "Index1";
+    Layout = "~/Areas/Admin/Views/Shared/_NewLayout.cshtml";
+}
+
+<h2>Index1</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.SanPham.DanhMucSanPham.Ten)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SanPham.Ten)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SanPham.MaSP)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SanPham.MetaTitle)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SanPham.Mota)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SanPham.HinhAnh)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SanPham.MucHinhAnh)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SanPham.Gia)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SanPham.GiaKhuyenMai)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SanPham.SoLuong)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SanPham.NoiDungSanPham)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SanPham.NgayTao)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SanPham.NguoiTao)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SanPham.NgayChinhSua)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SanPham.NguoiChinhSua)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SanPham.TrangThai)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SanPham.SPHot)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model.SanPhams) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.DanhMucSanPham.Ten)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Ten)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MaSP)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MetaTitle)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Mota)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.HinhAnh)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MucHinhAnh)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Gia)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.GiaKhuyenMai)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SoLuong)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NoiDungSanPham)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NgayTao)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NguoiTao)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NgayChinhSua)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NguoiChinhSua)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TrangThai)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SPHot)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ProductID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ProductID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ProductID })
+        </td>
+    </tr>
+}
+
+</table>

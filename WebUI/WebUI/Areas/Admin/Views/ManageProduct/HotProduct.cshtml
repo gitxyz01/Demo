@@ -1,0 +1,46 @@
+﻿@model WebUI.Models.AdminProductListModel
+@{
+    ViewBag.Title = "HotProduct";
+    Layout = "~/Areas/Admin/Views/Shared/_NewLayout.cshtml";
+}
+
+<h2>Sản Phẩm Hot</h2>
+<table class=" table table-bordered table-hover">
+    <tr>
+        <th>Mã Sản Phẩm</th>
+        <th>Tên Sản Phẩm</th>
+        <th>Số Lượng</th>
+        <th>Giá Sản Phẩm</th>
+        <th>Sản Phẩm Hot</th>
+        <th>Danh Mục</th>
+        <th>Hình Ảnh</th>
+        <th>Chỉnh Sửa</th>
+    </tr>
+    @foreach (var sanpham in Model.SanPhams)
+    {
+        <tr>
+            <td class="col-sm-1">@sanpham.ProductID</td>
+            <td class="col-sm-1">@sanpham.Ten</td>
+            <td class="col-sm-1">@sanpham.SoLuong</td>
+            <td class="col-sm-1">@sanpham.Gia</td>
+            @if (sanpham.SPHot == true)
+            {
+                <td class="col-sm-1">
+                    <i class="glyphicon glyphicon-check text-info"> Hot</i>
+                </td>
+            }
+            else
+            {
+                <td class="col-sm-1"></td>
+            }
+            <td class="col-sm-1">@sanpham.DanhMucSanPham.Ten</td>
+            <td class="col-sm-1"><img src="@sanpham.HinhAnh" style="width:40px;height:40px;" /></td>
+            <td class="col-sm-1">
+                <a href="@Url.Action("EditProduct", "ManageProduct",new { id=sanpham.ProductID})">
+                    <i class="glyphicon glyphicon-edit btn btn-info"> </i>
+                </a>
+            </td>
+        </tr>
+    }
+</table>
+

@@ -1,0 +1,56 @@
+﻿@model WebUI.Areas.Admin.Models.AdminCategoryViewModel
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_NewLayout.cshtml";
+}
+
+<h2>Danh Mục Tin Tức</h2>
+<h3>
+    <button class="btn btn-info glyphicon glyphicon-plus">
+        @Html.ActionLink("Thêm Mới", "Create", "ManageNewCategory", "", null)
+    </button>
+</h3>
+@if (Model.ListNewCategory.Count == 0)
+{
+    <h3>Hiện Tại Chưa Có Danh Mục Nào</h3>
+}
+else
+{
+    <table id="datatable" class="table table-striped table-bordered dataTable no-footer" role="grid" aria-describedby="datatable_info">
+        <thead>
+            <tr>
+                <th>Tên Danh Mục</th>
+                <th>Thứ Tự Hiển Thị</th>
+                <th>Ngày Tạo</th>
+                <th>Người Tạo</th>
+                <th>Chỉnh Sửa</th>
+                <th>Xóa</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.ListNewCategory)
+            {
+            <tr>
+                <td>@item.Ten</td>
+                <td>@item.ThuTuHienThi</td>
+                <td>@item.NgayTao</td>
+                <td>@item.NguoiTao</td>
+                <td class="col-sm-1">
+                    <a href="@Url.Action("Edit", "ManageNewCategory",new { id=item.NewCategoryID})">
+                        <i class="glyphicon glyphicon-edit btn btn-info"> </i>
+                    </a>
+                </td>
+                <td class="col-sm-1">
+                    <a href="@Url.Action("ConfirmDelete", "ManageNewCategory",new { id=item.NewCategoryID})">
+                        <i class="glyphicon glyphicon-remove btn btn-info"> </i>
+                    </a>
+                </td>
+            </tr>
+            }                    
+        </tbody>
+    </table>
+}
+
+
+
