@@ -35,7 +35,7 @@
                 <td class="col-sm-1">@sanpham.MaSP</td>
                 <td class="col-sm-1">@sanpham.Ten</td>
                 <td class="col-sm-1">@sanpham.SoLuong</td>
-                <td class="col-sm-1">@sanpham.Gia</td>
+                <td class="col-sm-1"> @String.Format(System.Globalization.CultureInfo.GetCultureInfo("vi-VN"), "{0:C0}", sanpham.Gia)</td>
                 <td class="col-sm-1">@sanpham.GiaKhuyenMai</td>
                 <td class="col-sm-1">@sanpham.Mota</td>
                 @if (sanpham.SPHot == true)

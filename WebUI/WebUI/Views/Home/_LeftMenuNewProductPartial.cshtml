@@ -7,23 +7,34 @@
     <hr />
     @foreach (var sanpham in Model.Sanphams)
     {
-        <div class="row">
-            <div class="col-sx-12 col-sm-8" style="position:relative; left:40px;">
-                <article class="artical_product">
-                    <a href="#"
-                       class="product">
-                        <div class="artical_content">
-                            <img id="img-product" src="@sanpham.HinhAnh" class="img-responsive" />
-                        </div>
-                    </a>
-                </article>
-            </div>
-            <div class="col-sx-12 col-sm-4" style="position:relative; right:50px;">
-                <h4>@sanpham.Ten</h4>
-                <p>@sanpham.Gia 000 vnd</p>
-            </div>
-
+    <div class="row">
+        <div class="col-sx-12 col-sm-8" style="position:relative; left:40px;">
+            <article class="artical_product">
+                <a href="#"
+                   class="product">
+                    <div class="artical_content">
+                        <img id="img-product" src="@sanpham.HinhAnh" class="img-responsive" />
+                    </div>
+                </a>
+            </article>
         </div>
+        <div class="col-sx-12 col-sm-4" style="position:relative; right:50px;">
+            <h4>@sanpham.Ten</h4>
+            <p>@sanpham.Gia 000 vnd</p>
+        </div>
+        <div class="content_price" itemprop="offers" itemscope="" itemtype="https://schema.org/Offer">
+            <form action="@Url.Action("AddToCart", "Cart")" method="post">
+                <input type="hidden"
+                       name="id"
+                       value="@sanpham.ProductID" />
+                <button type="submit" class="btn btn-danger">
+                    Thêm Vào Giỏ Hàng
+                    <i class="glyphicon glyphicon-shopping-cart"></i>
+                </button>
+            </form>
+        </div><!-- product price -->
+
+    </div>
         <hr />
     }
 </div>

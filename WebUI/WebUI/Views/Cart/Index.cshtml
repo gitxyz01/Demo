@@ -1,0 +1,206 @@
+﻿@model Domain.Models.Cart
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared1/_Layout.cshtml";
+}
+
+<h2>Giỏ Hàng</h2>
+<div class="columns-container">
+    <div id="columns" class="container">
+        <div class="breadcrumb clearfix">
+            <a class="home" href="/" title="Trở về Trang chủ">
+                <i class="fa fa-home"></i>
+            </a>
+            <span class="navigation-pipe">&gt;</span>
+          
+        </div><!-- breadcrumb -->
+        <div class="row">
+            <!-- content -->
+            <div class="large-left col-sm-12">
+                <div class="row">
+                    <div id="center_column" class="center_column col-xs-12 col-sm-9 accordionBox">
+                        <h1 class="page-heading product-listing">
+                            <span class="cat-name"></span>
+                        </h1> <!-- title category panel -->
+                        <div class="" style="display:inline-block;"> Sắp Xếp Theo</div>
+                        
+                        <div class="content_sortPagiBar clearfix">
+                            <!-- content filter-display bar -->
+                            <!-- display-content bar -->
+                            <div class="top-pagination-content clearfix">
+                                
+                            </div><!-- pagination-content bar -->
+                        </div><!-- sort bar -->
+
+
+
+                        <table class="table-bordered" style=" width:900px;">
+                            <tr>
+                                <td>Sản Phẩm</td>
+                                <td>Hình Ảnh</td>
+                                <td>Số Lượng</td>
+                                <td>Đơn Giá</td>
+                                <td>Tổng Cộng</td>
+                            </tr>
+                            @if (Model.LineCollection.Count() > 0)
+                            {
+                                foreach (var line in Model.LineCollection)
+                                {
+                                    <tr>
+                                        <td>@line.Product.Ten</td>
+                                        <td><img src="@line.Product.HinhAnh" style="width:50px;height:50px;"/></td>
+                                        <td>
+                                            <form action="@Url.Action("Update", "Cart")" method="post">
+                                                <input type="hidden"
+                                                       name="id"
+                                                       value="@line.Product.ProductID" />
+                                                <div class="input-group">
+                                                    <input type="number"
+                                                           class="form-control"
+                                                           value="@line.Quantity"
+                                                           name="quantity" />
+                                                    <span class="input-group-btn">
+                                                        <button class="btn btn-default"
+                                                                type="submit">
+                                                            <i class="glyphicon glyphicon-refresh"></i>
+                                                        </button>
+                                                    </span>
+                                                </div>
+                                            </form>
+                                        </td>
+                                        <td> @String.Format(System.Globalization.CultureInfo.GetCultureInfo("vi-VN"), "{0:C0}", line.Product.Gia)</td>
+                                        <td>@(line.Product.Gia * line.Quantity)</td>
+                                        <td>
+                                            <form action="@Url.Action("Delete", "Cart")" method="post">
+                                                <input type="hidden"
+                                                       name="id"
+                                                       value="@line.Product.ProductID" />
+                                                <button type="submit" class="btn btn-danger"> Xóa Khỏi Giỏ Hàng
+                                                    <i class="glyphicon glyphicon-remove"></i>
+                                                </button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                }
+                            }
+                            else
+                            {
+                                <tr>
+                                    <td colspan="4">
+                                        Empty
+                                    </td>
+                                </tr>
+                            }
+                            <tr>
+            <td colspan="4">
+                Total
+            </td>
+            <td>@Model.ComputerTotal().ToString("c")</td>
+        </tr>
+                            <tr>
+                                <td>
+                <a href="@ViewBag.ReturnUrl">
+                    <i class="glyphicon glyphicon-backward">Back</i>
+                </a>
+            </td>
+                                <td colspan="2"></td>
+                                <td>
+                                    <a href="@Url.Action("Checkout","Cart")" class="btn btn-danger">
+                                        Checkout
+                                    </a>
+                                </td>
+                                <td>@Html.ActionLink("Back to previous page", null, null, null, new { href = Request.UrlReferrer })</td>
+                            </tr>
+                        </table>
+
+
+                        <!-- list product -->
+                        <div class="content_sortPagiBar">
+                            <div class="bottom-pagination-content clearfix">
+                               
+                            </div>
+                        </div><!-- sort bar -->
+                    </div><!-- list product panel -->
+                    <div id="left_column" class="column col-xs-12 col-sm-3">
+                        <section id="layered_block_left" class="block">
+                            <h4 class="title_block">DANH MỤC</h4>
+                            <div class="block_content">
+
+                                @using (Html.BeginForm("SearchProductByPrice", "Product", FormMethod.Post, new { @id = "layered_form", enctype = "multipart/form-data" }))
+                                {
+                                    @Html.ValidationSummary()
+                                    <div>
+                                        <div class="layered_filter">
+                                            <div class="layered_subtitle_heading">
+                                                <span class="layered_subtitle">Danh mục sản phẩm</span>
+                                            </div>
+                                            @{Html.RenderAction("_HomeMenuCategoryPartial", "Home");}
+                                        </div>
+                                        @*<div class="layered_filter">
+                                                <div class="layered_subtitle_heading">
+                                                    <span class="layered_subtitle">Thương hiệu</span>
+
+                                                </div>
+                                                @*<ul class="col-lg-12 layered_filter_ul">
+                                                    @foreach (var brand in @Model.Brands)
+                                                    {
+                                                        <li class="nomargin col-lg-12">
+                                                            <label><input type="checkbox" class="ckb-brand-filtercontent" data-id=@brand.Id> @brand.Name</label>
+                                                        </li>
+                                                    }
+                                                </ul>*
+                                            </div>*@
+                                        <div class="layered_price clearfix" style="">
+                                            <div class="layered_subtitle_heading">
+                                                <span class="layered_subtitle">Giá</span>
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Tu</label>
+                                                <div class="col-sm-5">
+                                                    <input type="number" name="minPrice" min="0" step="500000" required />
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label>Den</label>
+                                                <div class="col-sm-5">
+                                                    <input type="number" name="maxPrice" max="10000000" step="500000" required />
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <button type="submit" class="btn btn-default button-search">
+                                                    <span>Search</span>
+                                                </button>
+                                            </div>
+                                            @*<div class="col-lg-12 layered_filter_ul">
+                                                    <div class="price-range-input-panel">
+                                                        <input type="text" class="span2" value="" data-slider-min="0" data-slider-max="50000000" data-slider-step="100000" data-slider-value="[200000,20000000]" id="Sl_PriceRange">
+                                                        <br />
+                                                        <b class="pull-left">0 Đ</b> <b class="pull-right">50.000.000 Đ</b>
+                                                    </div>
+                                                    <div class="btn-filter-after-price-wrapper">
+                                                        <a id="Btn_FilterAfterPrice" class="btn-filter-after-price">
+                                                            <i class="fa fa-filter"></i>
+                                                        </a>
+                                                    </div>
+                                                </div>*@
+                                        </div>
+                                    </div>
+
+                                }
+                            </div>
+                        </section>
+                        @*<section id="new-products_block_right" class="block products_block">
+                            @Html.Partial("VerticalListProductBar", (IEnumerable<Domain.Concrete.SanPham>)@ViewBag.NewProducts, new ViewDataDictionary { { "Title", "Sản phẩm mới" } })
+                        </section>*@
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+

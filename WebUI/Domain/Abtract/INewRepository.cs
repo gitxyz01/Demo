@@ -19,5 +19,6 @@ namespace Domain.Abtract
         List<ListNewAdminViewModel> GetListNewAdmin(int newCategoryId=0);
         List<ListNewAdminViewModel> GetAllNewCategoryIndex(int page, string newOrBlog, long newCategoryId);
         void SetViewCount();
+        TinTuc GetAboutNew();
     }
 }

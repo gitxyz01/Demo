@@ -1,5 +1,8 @@
 ﻿using Domain.Abtract;
+using Domain.Define;
 using Domain.Entities;
+using Service.Implement;
+using Service.Interface;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,11 +15,12 @@ namespace WebUI.Controllers
     public class HomeController : Controller
     {
         private IMainRepository DaPhongThuy;
-
-        
+        private IMenuService menuSevice;
+               
         public HomeController()
         {
             DaPhongThuy = new Repository();
+            menuSevice = new MenuService();
         }        
         public void HotProductFeature()
         {           
@@ -28,7 +32,7 @@ namespace WebUI.Controllers
         }
         public ActionResult Index()
         {
-            DaPhongThuy.RestoreAll();
+            ViewBag.TopBanner = menuSevice.GetViewBagMenu((int)Define.MenuType.TopBanner);
             var model = DaPhongThuy.SanPhams.Where(x=>x.TrangThai == true)
                 .OrderByDescending(x => x.ProductID)
                 .Take(10)
@@ -68,8 +72,22 @@ namespace WebUI.Controllers
 
         public ActionResult _HeaderPartial()
         {
+            ViewBag.Logo = menuSevice.GetViewBagMenu((int)Define.MenuType.Logo);
             var model = DaPhongThuy.DanhMucSanPhams.Where(x=>x.TrangThai==true).ToList();
             return PartialView(model);
         }
+        public ActionResult _FooterPartial1()
+        {
+            ViewBag.FooterMenu = menuSevice.GetViewBagMenu((int)Define.MenuType.Footer);
+            return PartialView();
+        }
+
+        public ActionResult _BlogPartial()
+        {
+            INewRepository newService = new NewRepository();
+            var model = newService.News.Where(x => x.DanhMucTinTuc.ThuTuHienThi >= 1000 && x.DanhMucTinTuc.ThuTuHienThi < 2000).OrderByDescending(x => x.NewID).Take(3).ToList();
+            return PartialView(model);
+        }
+
     }
 }

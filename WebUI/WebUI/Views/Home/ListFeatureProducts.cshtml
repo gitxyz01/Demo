@@ -24,9 +24,20 @@ foreach (var item in Model)
                 </p>
                 <div class="content_price" itemprop="offers" itemscope="" itemtype="https://schema.org/Offer">
                     <span class="price product-price product-price-new">
-                        @item.Gia vnđ
+                        @String.Format(System.Globalization.CultureInfo.GetCultureInfo("vi-VN"), "{0:C0}", item.Gia)
                     </span>
                 </div>
+                <div class="content_price" itemprop="offers" itemscope="" itemtype="https://schema.org/Offer">
+                    <form action="@Url.Action("AddToCart", "Cart")" method="post">
+                        <input type="hidden"
+                               name="id"
+                               value="@item.ProductID" />
+                        <button type="submit" class="btn btn-danger">
+                            Thêm Vào Giỏ Hàng
+                            <i class="glyphicon glyphicon-shopping-cart"></i>
+                        </button>
+                    </form>
+                </div><!-- product price -->
                 <span class="availability">
                     <span class=" label-success">
                         Còn hàng

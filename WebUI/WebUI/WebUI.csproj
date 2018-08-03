@@ -217,13 +217,18 @@
     <Compile Include="Areas\Admin\AdminsAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeAdminControler.cs" />
     <Compile Include="Areas\Admin\Controllers\ManageCategoryController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ManageMenuController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ManageMenuTypeController.cs" />
     <Compile Include="Areas\Admin\Controllers\ManageNewCategoryController.cs" />
     <Compile Include="Areas\Admin\Controllers\ManageNewController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ManageOrderController.cs" />
     <Compile Include="Areas\Admin\Controllers\ManageProductController.cs" />
     <Compile Include="Areas\Admin\Controllers\ManageRoleController.cs" />
     <Compile Include="Areas\Admin\Controllers\ManageUserController.cs" />
     <Compile Include="Areas\Admin\Controllers\AccountController.cs" />
     <Compile Include="Areas\Admin\Models\AdminNewCategoryViewModel.cs" />
+    <Compile Include="Areas\Admin\Models\ProductViewModel.cs" />
+    <Compile Include="Controllers\CartController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Areas\Admin\Controllers\ManageController.cs" />
     <Compile Include="Controllers\NewController.cs" />
@@ -5895,6 +5900,17 @@
     <Content Include="Areas\Admin\Views\ManageNewCategory\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\ManageNewCategory\ConfirmDelete.cshtml" />
     <Content Include="Areas\Admin\Views\ManageNew\ConfirmDelete.cshtml" />
+    <Content Include="Areas\Admin\Views\ManageMenuType\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\ManageMenuType\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\ManageMenuType\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\ManageMenu\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\ManageMenu\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\ManageMenu\_ListMenuTypePartial.cshtml" />
+    <Content Include="Areas\Admin\Views\ManageMenu\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\ManageOrder\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\ManageOrder\OrderDetails.cshtml" />
+    <Content Include="Areas\Admin\Views\ManageOrder\ConfirmDelete.cshtml" />
+    <Content Include="Areas\Admin\Views\ManageOrder\ListCustomers.cshtml" />
     <None Include="Scripts1\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts1\jquery-1.10.2.js" />
     <Content Include="Scripts1\jquery-1.10.2.min.js" />
@@ -7165,6 +7181,13 @@
     <Content Include="Views\New\Details.cshtml" />
     <Content Include="Views\Product\SearchProductByPrice.cshtml" />
     <Content Include="Views\Product\SearchProduct.cshtml" />
+    <Content Include="Views\Home\_FooterPartial1.cshtml" />
+    <Content Include="Views\Home\_BlogPartial.cshtml" />
+    <Content Include="Views\Shared\NotFound.cshtml" />
+    <Content Include="Views\New\About.cshtml" />
+    <Content Include="Views\Cart\Index.cshtml" />
+    <Content Include="Views\Cart\CheckOut.cshtml" />
+    <Content Include="Views\Shared\Complete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -7189,6 +7212,10 @@
     <ProjectReference Include="..\Domain\Domain.csproj">
       <Project>{f8c21ad3-f537-43c6-835d-75d062622cbf}</Project>
       <Name>Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Service\Service.csproj">
+      <Project>{a61f13fd-35ef-489a-8145-99658f6dcaca}</Project>
+      <Name>Service</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

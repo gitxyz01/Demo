@@ -10,3 +10,14 @@ C:\Users\milion\source\repos\WebUI\Domain\obj\Debug\Domain.csproj.CopyComplete
 C:\Users\milion\source\repos\WebUI\Domain\obj\Debug\Domain.dll
 C:\Users\milion\source\repos\WebUI\Domain\obj\Debug\Domain.pdb
 C:\Users\milion\source\repos\WebUI\Domain\obj\Debug\Domain.csprojAssemblyReference.cache
+E:\Git\Demo\WebUI\Domain\bin\Debug\Domain.dll.config
+E:\Git\Demo\WebUI\Domain\bin\Debug\Domain.dll
+E:\Git\Demo\WebUI\Domain\bin\Debug\Domain.pdb
+E:\Git\Demo\WebUI\Domain\bin\Debug\EntityFramework.dll
+E:\Git\Demo\WebUI\Domain\bin\Debug\EntityFramework.SqlServer.dll
+E:\Git\Demo\WebUI\Domain\bin\Debug\EntityFramework.xml
+E:\Git\Demo\WebUI\Domain\bin\Debug\EntityFramework.SqlServer.xml
+E:\Git\Demo\WebUI\Domain\obj\Debug\Domain.csproj.CoreCompileInputs.cache
+E:\Git\Demo\WebUI\Domain\obj\Debug\Domain.csproj.CopyComplete
+E:\Git\Demo\WebUI\Domain\obj\Debug\Domain.dll
+E:\Git\Demo\WebUI\Domain\obj\Debug\Domain.pdb

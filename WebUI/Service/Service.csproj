@@ -34,6 +34,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -44,7 +45,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
+    <Compile Include="Implement\CartService.cs" />
+    <Compile Include="Implement\MenuService.cs" />
+    <Compile Include="Implement\MenuTypeService.cs" />
+    <Compile Include="Implement\OrderService.cs" />
+    <Compile Include="Interface\ICartService.cs" />
+    <Compile Include="Interface\IMenuService.cs" />
+    <Compile Include="Interface\IMenuTypeService.cs" />
+    <Compile Include="Interface\IOrderService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -52,10 +60,7 @@
       <Project>{f8c21ad3-f537-43c6-835d-75d062622cbf}</Project>
       <Name>Domain</Name>
     </ProjectReference>
-    <ProjectReference Include="..\WebUI\WebUI.csproj">
-      <Project>{d7d5bc6b-8296-4faf-9c2e-9873dc798443}</Project>
-      <Name>WebUI</Name>
-    </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

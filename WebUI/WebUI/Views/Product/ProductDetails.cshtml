@@ -101,6 +101,17 @@
                                                     @Model.Mota
                                                 </p>
                                             </div>
+                                            <div class="content_price" itemprop="offers" itemscope="" itemtype="https://schema.org/Offer">
+                                                <form action="@Url.Action("AddToCart", "Cart")" method="post">
+                                                    <input type="hidden"
+                                                           name="id"
+                                                           value="@Model.ProductID" />
+                                                    <button type="submit" class="btn btn-danger">
+                                                        Thêm Vào Giỏ Hàng
+                                                        <i class="glyphicon glyphicon-shopping-cart"></i>
+                                                    </button>
+                                                </form>
+                                            </div><!-- product price -->
                                         </div>
                                     </div>
                                 </div>

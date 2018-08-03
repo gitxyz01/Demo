@@ -49,3 +49,13 @@ C:\Users\milion\source\repos\WebUI\Service\obj\Debug\Service.csproj.CoreCompileI
 C:\Users\milion\source\repos\WebUI\Service\obj\Debug\Service.csproj.CopyComplete
 C:\Users\milion\source\repos\WebUI\Service\obj\Debug\Service.dll
 C:\Users\milion\source\repos\WebUI\Service\obj\Debug\Service.pdb
+E:\Git\Demo\WebUI\Service\bin\Debug\Service.dll
+E:\Git\Demo\WebUI\Service\bin\Debug\Service.pdb
+E:\Git\Demo\WebUI\Service\bin\Debug\Domain.dll
+E:\Git\Demo\WebUI\Service\bin\Debug\Domain.pdb
+E:\Git\Demo\WebUI\Service\bin\Debug\Domain.dll.config
+E:\Git\Demo\WebUI\Service\obj\Debug\Service.csprojAssemblyReference.cache
+E:\Git\Demo\WebUI\Service\obj\Debug\Service.csproj.CoreCompileInputs.cache
+E:\Git\Demo\WebUI\Service\obj\Debug\Service.csproj.CopyComplete
+E:\Git\Demo\WebUI\Service\obj\Debug\Service.dll
+E:\Git\Demo\WebUI\Service\obj\Debug\Service.pdb

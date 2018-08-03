@@ -7,35 +7,19 @@
 <div id="columns" class="container">
     <div id="slider_row" class="row">
         <div id="top_column" class="center_column col-xs-12 col-sm-12">
-
-            @*  @Html.Action("BannerPartial")*@
-
             <div id="htmlcontent_top">
                 <ul class="htmlcontent-home clearfix row">
-                    <li class="htmlcontent-item-1 col-xs-4">
-                        <a href="/News/Index/11" class="item-link active_hover" title="" style="font-size: 32px!important;">
-                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSymRQyUZM_1nnzgcDy_kR3yVXpqavjyJlkfhVTWYBgXRXWowTF" class="item-img" title="" alt="" width="100%" height="100%">
-                            <div class="item-html">
-                                <h3>Phong cách hiện đại</h3>
-                            </div>
-                        </a>
-                    </li>
-                    <li class="htmlcontent-item-2 col-xs-4">
-                        <a href="/News/Index/12" class="item-link active_hover" title="" style="font-size: 32px!important;">
-                            <img src="https://farm5.staticflickr.com/4369/36226177872_9f5b18ccbe_b.jpg" class="item-img" title="" alt="" width="100%" height="100%">
-                            <div class="item-html">
-                                <h3>Phong cách cổ điển</h3>
-                            </div>
-                        </a>
-                    </li>
-                    <li class="htmlcontent-item-3 col-xs-4">
-                        <a href="/News/Index/9" class="item-link active_hover" title="" style="font-size: 32px!important;">
-                            <img src="https://eropi.com/media/wysiwyg/tin_tuc_3/nhung-kien-thuc-chung-ve-da-phong-thuy_1_.jpg" class="item-img" title="" alt="" width="100%" height="100%">
-                            <div class="item-html">
-                                <h3>Trang trí nội thất</h3>
-                            </div>
-                        </a>
-                    </li>
+                    @foreach (var item in (List<Domain.Models.MenuViewModel>)ViewBag.TopBanner)
+                    {
+                        <li class="htmlcontent-item-3 col-xs-4">
+                            <a href="@item.Link" class="item-link active_hover" title="" style="font-size: 32px!important;">
+                                <img src="@item.Image" class="item-img" title="" alt="" width="100%" height="100%">
+                                <div class="item-html">
+                                    <h3>@item.Text</h3>
+                                </div>
+                            </a>
+                        </li>
+                    }                    
                 </ul>
             </div>
         </div>
@@ -48,7 +32,6 @@
                         <li class="blocknewproducts active"><a data-toggle="tab" href="#blocknewproducts" class="blocknewproducts">Sản phẩm mới</a></li>
                         <li class="blockbestsellers"><a data-toggle="tab" href="#blockbestsellers" class="blockbestsellers">Sản phẩm HOT</a></li>
                         <li class="classicstyle"><a data-toggle="tab" href="#classicstyle" class="classicstyle">Sản Phẩm Khuyến Mãi</a></li>
-                        <li class="modelstyle"><a data-toggle="tab" href="#modelstyle" class="modelstyle">Phong cách hiện đại</a></li>
                     </ul>
                     <div class="tab-content">
                         <ul id="blocknewproducts" class="product_list grid row blocknewproducts tab-pane active">
@@ -59,40 +42,20 @@
                         </ul>
                         <ul id="classicstyle" class="product_list grid row blockbestsellers tab-pane">
                             @{Html.RenderAction("_HomeSaleProductPartial", "Home");}
-                        </ul>
-                        @*
-        <ul id="classicstyle" class="product_list grid row classicstyle tab-pane">
-            @Html.Partial("ListFeatureProducts", (IEnumerable<OnlineStore.Model.ViewModel.ProductSummaryView>)ViewBag.ClassicStyleProductList)
-        </ul>
-
-        <ul id="modelstyle" class="product_list grid row modelstyle tab-pane">
-            @Html.Partial("ListFeatureProducts", (IEnumerable<OnlineStore.Model.ViewModel.ProductSummaryView>)ViewBag.ModernStyleProductList)
-        </ul>
-                        *@
+                        </ul>                    
                     </div>
 
-                    @*     <div class="home-column">
+                         <div class="home-column">
             <div id="htmlcontent_home">
                 <ul class="htmlcontent-home clearfix row">
                     <li class="htmlcontent-item-1 col-xs-12">
-                        @if (ViewBag.Banner2 != null)
-                        {
-                            var banner2 = (OnlineStore.Model.ViewModel.BannerViewModel)ViewBag.Banner2;
-
-                            <a href="#" class="item-link active_hover" title="" style="font-size: 43.6949px;">
-                                <img src="@banner2.ImagePath" clas class="item-img" title="" alt="" width="100%" height="100%">
-                                <div class="item-html">
-                                    <h4>2016</h4>
-                                    <h3>Bộ sưu tập mới</h3>
-                                </div>
-                            </a>
-                        }
+                        
                     </li>
                 </ul>
             </div>
 
-            @Html.Action("BlogPartial")
-        </div> *@
+            @Html.Action("_BlogPartial")
+        </div> 
                 </div>
                    
                 </div>
@@ -102,17 +65,7 @@
 
     <div class="home-column">
     </div>
-    @*
-        @if (ViewBag.BannerPopup != null)
-        {
-            var bannerPopup = (OnlineStore.Model.ViewModel.BannerViewModel)ViewBag.BannerPopup;
-            <div style="display:none">
-                <a id="bannerPopup" rel="group" href="@bannerPopup.ImagePath" title="@bannerPopup.Name">
-                    <img src="@bannerPopup.ImagePath" alt="" />
-                </a>
-            </div>
-        }
-    *@
+
     <script>
         $(document).ready(function () {
 

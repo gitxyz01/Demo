@@ -156,11 +156,12 @@
         <div class="columns-container">
             @RenderBody()
         </div>
-        @RenderPage("_FooterPartial.cshtml")
+        @Html.Action("_FooterPartial1", "Home", new { area = "" })
     </div>
     <a href="javascript:;" id="to_top">
         <img src="/Content1/img/icon_gototop.png" title="Xavia Decor" alt="Xavia Decor - Chuyên cung cấp đồ trang trí nội thất cao cấp">
     </a>
+    @RenderSection("scripts1", false)
 </body>
 
 </html>

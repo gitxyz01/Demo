@@ -1,0 +1,14 @@
+﻿@model List<Domain.Models.MenuTypeViewModel>
+
+<ul class="nav child_menu">
+
+    @foreach (var item in Model)
+    {
+        <li>
+            <a href="@Url.Action("Index","ManageMenu",new {menuTypeId=item.MenuTypeId})">
+                @item.Name                
+            </a>
+        </li>
+    }
+   
+</ul>

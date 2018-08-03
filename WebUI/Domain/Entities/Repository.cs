@@ -94,5 +94,10 @@ namespace Domain.Entities
             }
             context.SaveChanges();
         }
+
+        public void save()
+        {
+            context.SaveChanges();
+        }
     }
 }

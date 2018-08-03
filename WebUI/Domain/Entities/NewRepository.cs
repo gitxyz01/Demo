@@ -22,9 +22,14 @@ namespace Domain.Entities
             var deleteNew = GetNewById(New.NewID);
             if (deleteNew != null)
             {
-                deleteNew.TrangThai = false;
+                context.TinTucs.Remove(deleteNew);
             }
             context.SaveChanges();
+        }
+
+        public TinTuc GetAboutNew()
+        {
+            return context.TinTucs.Where(x => x.TrangThai == true && x.DanhMucTinTuc.ThuTuHienThi >= 2000 && x.Ten == "Giới Thiệu").FirstOrDefault();
         }
 
         public List<TinTuc> GetAllDeletedNews()
@@ -93,7 +98,7 @@ namespace Domain.Entities
             if (newOrBlog == "News")
             {            
             return context.TinTucs
-                    .Where(x => newCategoryId == 0 && x.TrangThai == true && x.DanhMucTinTuc.ThuTuHienThi < 1000 || x.NewCategoryID == newCategoryId && x.TrangThai == true && x.DanhMucTinTuc.ThuTuHienThi < 1000)
+                    .Where(x => newCategoryId == 0 && x.TrangThai == true  && x.DanhMucTinTuc.ThuTuHienThi < 1000 || x.NewCategoryID == newCategoryId && x.TrangThai == true && x.DanhMucTinTuc.ThuTuHienThi < 1000)
                     .Select(x => new ListNewAdminViewModel()
                     {
                         NewID = x.NewID,
@@ -114,13 +119,12 @@ namespace Domain.Entities
             else
             {
                 return context.TinTucs
-                   .Where(x => newCategoryId == 0 && x.TrangThai == true &&x.DanhMucTinTuc.ThuTuHienThi>1000|| x.NewCategoryID == newCategoryId && x.TrangThai == true && x.DanhMucTinTuc.ThuTuHienThi > 1000)
+                   .Where(x => newCategoryId == 0 && x.TrangThai == true &&x.DanhMucTinTuc.ThuTuHienThi>=1000 && x.DanhMucTinTuc.ThuTuHienThi < 2000 || x.NewCategoryID == newCategoryId && x.TrangThai == true && x.DanhMucTinTuc.ThuTuHienThi > 1000 && x.DanhMucTinTuc.ThuTuHienThi < 2000)
                    .Select(x => new ListNewAdminViewModel()
                    {
                        NewID = x.NewID,
                        NewCategoryID = x.NewCategoryID,
                        TrangThai = x.TrangThai,
-
                        Ten = x.Ten,
                        ThuTuHienThi = x.ThuTuHienThi,
                        HinhAnh = x.HinhAnh,

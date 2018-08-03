@@ -24,10 +24,7 @@ namespace WebUI.Areas.Admin.Controllers
         {
             
             AdminProductListModel model = new AdminProductListModel();
-            model.SanPhams = DaPhongThuy.SanPhams.Where(x => DanhmucId == 0&&x.TrangThai==true || DanhmucId == x.CategoryProductID && x.TrangThai == true)
-                //.OrderByDescending(x=>x.MaSanPham)
-                //.Skip((page-1)*10)
-                //.Take(10)
+            model.SanPhams = DaPhongThuy.SanPhams.Where(x => DanhmucId == 0&&x.TrangThai==true || DanhmucId == x.CategoryProductID && x.TrangThai == true)        
                 .ToList();
             return View(model);
         }

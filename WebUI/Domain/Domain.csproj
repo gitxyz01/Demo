@@ -54,22 +54,42 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Abtract\IMainRepository.cs" />
+    <Compile Include="Abtract\IMenuRepository.cs" />
     <Compile Include="Abtract\INewCategoryRepository.cs" />
     <Compile Include="Abtract\INewRepository.cs" />
+    <Compile Include="Abtract\IMenuTypeRepository.cs" />
+    <Compile Include="Abtract\IOrderRepository.cs" />
+    <Compile Include="Concrete\ChiTietDonHang.cs" />
     <Compile Include="Concrete\DanhMucSanPham.cs" />
     <Compile Include="Concrete\DanhMucTinTuc.cs" />
     <Compile Include="Concrete\DaPhongThuyEF.cs" />
+    <Compile Include="Concrete\DonHang.cs" />
     <Compile Include="Concrete\GioiThieu.cs" />
     <Compile Include="Concrete\KhachHang.cs" />
     <Compile Include="Concrete\LienHe.cs" />
+    <Compile Include="Concrete\Menu.cs" />
+    <Compile Include="Concrete\MenuType.cs" />
     <Compile Include="Concrete\SanPham.cs" />
     <Compile Include="Concrete\Tag.cs" />
     <Compile Include="Concrete\TinTuc.cs" />
+    <Compile Include="Define\Define.cs" />
+    <Compile Include="Entities\MenuRepository.cs" />
+    <Compile Include="Entities\MenuTypeRepository.cs" />
     <Compile Include="Entities\NewCategoryRepository.cs" />
     <Compile Include="Entities\NewRepository.cs" />
+    <Compile Include="Entities\OrderRepository.cs" />
     <Compile Include="Entities\Repository.cs" />
+    <Compile Include="Helpers\EmailHelper.cs" />
+    <Compile Include="Helpers\EnumHelper.cs" />
+    <Compile Include="Models\CartLine.cs" />
+    <Compile Include="Models\CustomerViewModel.cs" />
+    <Compile Include="Models\MenuTypeViewModel.cs" />
+    <Compile Include="Models\MenuViewModel.cs" />
     <Compile Include="Models\NewCategoryViewModel.cs" />
     <Compile Include="Models\NewViewModel.cs" />
+    <Compile Include="Models\OrderDetailsViewModel.cs" />
+    <Compile Include="Models\OrderViewModel.cs" />
+    <Compile Include="Models\ShippingDetailsViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />

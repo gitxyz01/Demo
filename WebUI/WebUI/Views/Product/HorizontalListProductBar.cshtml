@@ -14,17 +14,21 @@
     </div>
     <div class="frame" id="centered">
         <ul class="clearfix">
-            @if (Model != null) { 
-            foreach (var item in @Model)
+            @if (Model != null)
             {
-                <li class="product-box item product-box-horizontal-list-product-bar" style="float: left; list-style: none; position: relative; margin-right: 20px;">
-                    <a href="/Product/ProductDetails/@item.ProductID" class="lnk_img product-image product-image-horizontal-list-product-bar" title="@item.Ten">
-                        <img src='@item.HinhAnh' alt="@item.Ten" title="@item.Ten">
-                    </a>
-                    <h5 itemprop="name" class="product-name">
-                        <a href="/Product/ProductDetails/@item.ProductID" title="@item.Ten">@item.Ten</a>
-                    </h5>
-                </li>
+                foreach (var item in @Model)
+                {
+            <li class="product-box item product-box-horizontal-list-product-bar" style="float: left; list-style: none; position: relative; margin-right: 20px;">
+                <a href="/Product/ProductDetails/@item.ProductID" class="lnk_img product-image product-image-horizontal-list-product-bar" title="@item.Ten">
+                    <img src='@item.HinhAnh' alt="@item.Ten" title="@item.Ten">
+                </a>
+
+                <h5 itemprop="name" class="product-name">
+                    <a href="/Product/ProductDetails/@item.ProductID" title="@item.Ten">@item.Ten</a>
+                </h5>
+                
+            </li>
+                    
                 }
             }
             else

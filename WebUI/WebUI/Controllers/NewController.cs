@@ -44,7 +44,7 @@ namespace WebUI.Controllers
             }
             else
             {
-                var model = newRepository.News.Where(x => x.TrangThai == true && x.DanhMucTinTuc.ThuTuHienThi >= 1000).OrderByDescending(x => x.NewID)
+                var model = newRepository.News.Where(x => x.TrangThai == true && x.DanhMucTinTuc.ThuTuHienThi >= 1000 && x.DanhMucTinTuc.ThuTuHienThi < 2000).OrderByDescending(x => x.NewID)
                 .Take(3).ToList();
                 ViewBag.ListRecentNews = model;
             }
@@ -105,6 +105,19 @@ namespace WebUI.Controllers
                 return View(model);
             }
             else return View();           
+        }
+
+        public ViewResult About()
+        {
+            var model = newRepository.GetAboutNew();
+            if (model != null)
+            {
+                return View(model);
+            }
+            else
+            {
+                return View("NotFound");
+            }
         }
        
     }

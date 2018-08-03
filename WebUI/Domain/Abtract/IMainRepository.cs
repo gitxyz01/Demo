@@ -18,5 +18,6 @@ namespace Domain.Abtract
         void DeleteCategory(DanhMucSanPham danhMuc);
         void SaveCategory(DanhMucSanPham danhMuc);
         void RestoreAll();
+        void save();
     }
 }
