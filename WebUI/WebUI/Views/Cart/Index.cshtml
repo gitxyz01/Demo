@@ -4,7 +4,7 @@
     Layout = "~/Views/Shared1/_Layout.cshtml";
 }
 
-<h2>Giỏ Hàng</h2>
+
 <div class="columns-container">
     <div id="columns" class="container">
         <div class="breadcrumb clearfix">
@@ -15,20 +15,20 @@
           
         </div><!-- breadcrumb -->
         <div class="row">
+  
             <!-- content -->
             <div class="large-left col-sm-12">
                 <div class="row">
                     <div id="center_column" class="center_column col-xs-12 col-sm-9 accordionBox">
-                        <h1 class="page-heading product-listing">
-                            <span class="cat-name"></span>
-                        </h1> <!-- title category panel -->
-                        <div class="" style="display:inline-block;"> Sắp Xếp Theo</div>
-                        
+
+                        <h3 >
+                           Giỏ Hàng Của Bạn<i class="glyphicon glyphicon-shopping-cart"></i>
+                        </h3> <!-- title category panel -->
+
                         <div class="content_sortPagiBar clearfix">
-                            <!-- content filter-display bar -->
-                            <!-- display-content bar -->
+
                             <div class="top-pagination-content clearfix">
-                                
+
                             </div><!-- pagination-content bar -->
                         </div><!-- sort bar -->
 
@@ -40,7 +40,8 @@
                                 <td>Hình Ảnh</td>
                                 <td>Số Lượng</td>
                                 <td>Đơn Giá</td>
-                                <td>Tổng Cộng</td>
+                                <td>Thành Tiền</td>
+                                <td></td>
                             </tr>
                             @if (Model.LineCollection.Count() > 0)
                             {
@@ -48,7 +49,7 @@
                                 {
                                     <tr>
                                         <td>@line.Product.Ten</td>
-                                        <td><img src="@line.Product.HinhAnh" style="width:50px;height:50px;"/></td>
+                                        <td><img src="@line.Product.HinhAnh" style="width:50px;height:50px;" /></td>
                                         <td>
                                             <form action="@Url.Action("Update", "Cart")" method="post">
                                                 <input type="hidden"
@@ -69,13 +70,14 @@
                                             </form>
                                         </td>
                                         <td> @String.Format(System.Globalization.CultureInfo.GetCultureInfo("vi-VN"), "{0:C0}", line.Product.Gia)</td>
-                                        <td>@(line.Product.Gia * line.Quantity)</td>
+                                        <td>@String.Format(System.Globalization.CultureInfo.GetCultureInfo("vi-VN"), "{0:C0}", (line.Product.Gia * line.Quantity))</td>
                                         <td>
                                             <form action="@Url.Action("Delete", "Cart")" method="post">
                                                 <input type="hidden"
                                                        name="id"
                                                        value="@line.Product.ProductID" />
-                                                <button type="submit" class="btn btn-danger"> Xóa Khỏi Giỏ Hàng
+                                                <button type="submit" class="btn btn-danger">
+                                                    Xóa
                                                     <i class="glyphicon glyphicon-remove"></i>
                                                 </button>
                                             </form>
@@ -87,37 +89,51 @@
                             {
                                 <tr>
                                     <td colspan="4">
-                                        Empty
+                                        Giỏ Hàng Trống
                                     </td>
                                 </tr>
                             }
                             <tr>
-            <td colspan="4">
-                Total
-            </td>
-            <td>@Model.ComputerTotal().ToString("c")</td>
-        </tr>
-                            <tr>
+                                <td colspan="2">Tổng Số Lượng</td>
+
+                                <td>@Model.ComputerTotalQuantity()</td>
                                 <td>
-                <a href="@ViewBag.ReturnUrl">
-                    <i class="glyphicon glyphicon-backward">Back</i>
-                </a>
-            </td>
-                                <td colspan="2"></td>
-                                <td>
-                                    <a href="@Url.Action("Checkout","Cart")" class="btn btn-danger">
-                                        Checkout
-                                    </a>
+                                    Tổng Đơn Hàng
                                 </td>
-                                <td>@Html.ActionLink("Back to previous page", null, null, null, new { href = Request.UrlReferrer })</td>
+
+                                <td colspan="2">
+                                    @String.Format(System.Globalization.CultureInfo.GetCultureInfo("vi-VN"), "{0:C0}", Model.ComputerTotal())
+
+                                </td>
                             </tr>
                         </table>
+                        <br />
+                        <br />
+                        <div class="row" style="position:relative; left:200px;">
+                            <div class=" col-sm-1">
+                                <a href="@Url.Action("Index","Product")">
+                                    <i class="btn btn-info">Tiếp Tục Shopping   </i>
+                                </a>
+                            </div>
+
+                            <div class=" col-sm-offset-4">
+                                <a href="@Url.Action("Checkout","Cart")" class="btn btn-success">
+                                    Đặt Hàng
+                                </a>
+
+                            </div>
+                        </div>
+
+                        <br />
+                        <br />
+                        <br />
+                        <br />
 
 
                         <!-- list product -->
                         <div class="content_sortPagiBar">
                             <div class="bottom-pagination-content clearfix">
-                               
+
                             </div>
                         </div><!-- sort bar -->
                     </div><!-- list product panel -->
@@ -137,19 +153,19 @@
                                             @{Html.RenderAction("_HomeMenuCategoryPartial", "Home");}
                                         </div>
                                         @*<div class="layered_filter">
-                                                <div class="layered_subtitle_heading">
-                                                    <span class="layered_subtitle">Thương hiệu</span>
+                                        <div class="layered_subtitle_heading">
+                                            <span class="layered_subtitle">Thương hiệu</span>
 
-                                                </div>
-                                                @*<ul class="col-lg-12 layered_filter_ul">
-                                                    @foreach (var brand in @Model.Brands)
-                                                    {
-                                                        <li class="nomargin col-lg-12">
-                                                            <label><input type="checkbox" class="ckb-brand-filtercontent" data-id=@brand.Id> @brand.Name</label>
-                                                        </li>
-                                                    }
-                                                </ul>*
-                                            </div>*@
+                                        </div>
+                                        @*<ul class="col-lg-12 layered_filter_ul">
+                                            @foreach (var brand in @Model.Brands)
+                                            {
+                                                <li class="nomargin col-lg-12">
+                                                    <label><input type="checkbox" class="ckb-brand-filtercontent" data-id=@brand.Id> @brand.Name</label>
+                                                </li>
+                                            }
+                                        </ul>*
+                                    </div>*@
                                         <div class="layered_price clearfix" style="">
                                             <div class="layered_subtitle_heading">
                                                 <span class="layered_subtitle">Giá</span>
@@ -173,17 +189,17 @@
                                                 </button>
                                             </div>
                                             @*<div class="col-lg-12 layered_filter_ul">
-                                                    <div class="price-range-input-panel">
-                                                        <input type="text" class="span2" value="" data-slider-min="0" data-slider-max="50000000" data-slider-step="100000" data-slider-value="[200000,20000000]" id="Sl_PriceRange">
-                                                        <br />
-                                                        <b class="pull-left">0 Đ</b> <b class="pull-right">50.000.000 Đ</b>
-                                                    </div>
-                                                    <div class="btn-filter-after-price-wrapper">
-                                                        <a id="Btn_FilterAfterPrice" class="btn-filter-after-price">
-                                                            <i class="fa fa-filter"></i>
-                                                        </a>
-                                                    </div>
-                                                </div>*@
+                                            <div class="price-range-input-panel">
+                                                <input type="text" class="span2" value="" data-slider-min="0" data-slider-max="50000000" data-slider-step="100000" data-slider-value="[200000,20000000]" id="Sl_PriceRange">
+                                                <br />
+                                                <b class="pull-left">0 Đ</b> <b class="pull-right">50.000.000 Đ</b>
+                                            </div>
+                                            <div class="btn-filter-after-price-wrapper">
+                                                <a id="Btn_FilterAfterPrice" class="btn-filter-after-price">
+                                                    <i class="fa fa-filter"></i>
+                                                </a>
+                                            </div>
+                                        </div>*@
                                         </div>
                                     </div>
 
@@ -191,8 +207,8 @@
                             </div>
                         </section>
                         @*<section id="new-products_block_right" class="block products_block">
-                            @Html.Partial("VerticalListProductBar", (IEnumerable<Domain.Concrete.SanPham>)@ViewBag.NewProducts, new ViewDataDictionary { { "Title", "Sản phẩm mới" } })
-                        </section>*@
+                        @Html.Partial("VerticalListProductBar", (IEnumerable<Domain.Concrete.SanPham>)@ViewBag.NewProducts, new ViewDataDictionary { { "Title", "Sản phẩm mới" } })
+                    </section>*@
                     </div>
                 </div>
             </div>

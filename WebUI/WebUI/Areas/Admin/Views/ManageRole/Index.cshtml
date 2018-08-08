@@ -32,7 +32,7 @@
 
                           <th>Tên quyền</th>
 
-                          <th>Thao tác</th>
+                          <th>Xóa</th>
 
                       </tr>
 
@@ -44,15 +44,18 @@
 
                       {
 
-                          <tr>
+                      <tr>
 
-                              <td>@item.Id</td>
+                          <td>@item.Id</td>
 
-                              <td>@item.Name</td>
-
-                              <td>@Html.ActionLink("Xóa", "Delete", new { id = item.Id })</td>
-
-                          </tr>
+                          <td>@item.Name</td>
+                          <td>
+                              <a href="@Url.Action("Delete", "ManageRole",new { Id = item.Id })">
+                                  <i class="glyphicon glyphicon-remove btn btn-info"> </i>
+                              </a>
+                          </td>
+                         
+                      </tr>
 
                       }
 

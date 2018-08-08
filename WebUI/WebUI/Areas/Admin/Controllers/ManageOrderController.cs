@@ -38,6 +38,7 @@ namespace WebUI.Areas.Admin.Controllers
         }
 
         // GET: Admin/ManageOrder
+        [Authorize(Roles = "Đọc,Admin")]
         public ActionResult Index(long customerId=0)
         {
             GetDropdowlistOrderStatus();
@@ -45,6 +46,7 @@ namespace WebUI.Areas.Admin.Controllers
             return View(model);
         }
 
+        [Authorize(Roles = "Đọc,Admin")]
         public ActionResult OrderDetails(long orderId)
         {
             var model = service.GetOrderByID(orderId);
@@ -52,6 +54,7 @@ namespace WebUI.Areas.Admin.Controllers
             return View(model);
         }
 
+        [Authorize(Roles = "Xóa,Admin")]
         public ViewResult ConfirmDelete()
         {
             return View();
@@ -63,6 +66,7 @@ namespace WebUI.Areas.Admin.Controllers
             return RedirectToAction("Index");
         }
 
+        [Authorize(Roles = "Tình Trạng Đơn Hàng,Admin")]
         [HttpPost]
         public ActionResult Update(OrderViewModel model)
         {

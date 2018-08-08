@@ -137,7 +137,7 @@ namespace WebUI.Areas.Admin.Controllers
         //
         // GET: /Account/Register
 
-        [Authorize(Roles = "Thêm Thành Viên")]
+        [Authorize(Roles = "Admin")]
         public ActionResult Register()
         {
             return View();

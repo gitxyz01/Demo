@@ -21,7 +21,7 @@
                     @*<p class="product-description">@item.ShortDescription</p>*@
                     <div class="price-box">
                         <span class="price">
-                            @item.Gia
+                            @String.Format(System.Globalization.CultureInfo.GetCultureInfo("vi-VN"), "{0:C0}", item.Gia)
                         </span>
                     </div>
                 </div>
@@ -29,7 +29,7 @@
         }
     </ul>
     <div>
-        <a title="Xem tất cả" href="/Product/SearchProduct?searchString=&searchType=3" class="btn btn-default btn-sm icon-right">
+        <a title="Xem tất cả" href="@Url.Action("Index","Product")" class="btn btn-default btn-sm icon-right">
             <span>
                 Xem tất cả
             </span>

@@ -21,12 +21,14 @@ namespace WebUI.Areas.Admin.Controllers
 
         // GET: Admin/ManageMenuType
 
+        [Authorize(Roles = "Đọc,Admin")]
         public ActionResult Index()
         {
             var model = service.GetListMenuType();
             return View(model);
         }
 
+        [Authorize(Roles = "Thêm,Admin")]
         public ViewResult Create()
         {
             return View();
@@ -48,6 +50,7 @@ namespace WebUI.Areas.Admin.Controllers
             return View();
         }
 
+        [Authorize(Roles = "Sửa,Admin")]
         public ViewResult Edit(long id)
         {            
             return View(service.GetMenuTypeByID(id));

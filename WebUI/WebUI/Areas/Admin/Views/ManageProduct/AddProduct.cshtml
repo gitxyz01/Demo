@@ -7,12 +7,14 @@
     Layout = "~/Areas/Admin/Views/Shared/_NewLayout.cshtml";
 }
 
-<div class="page-header">
-    <h3>Thêm Mới Sản Phẩm</h3>
-</div>
+
+<h3>Thêm Mới Sản Phẩm</h3>
+
+
 @using (Html.BeginForm("AddProduct", "ManageProduct", FormMethod.Post, new { @class = "form-horizontal", enctype = "multipart/form-data" }))
 {
-    @Html.ValidationSummary()
+
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
     <div class="form-group">
         @Html.LabelFor(x => x.MaSP, new { @class = "control-label col-sm-3" })
         <div class="col-sm-9">
@@ -45,11 +47,10 @@
         </div>
     </div>
     <div class="form-group">
-        @Html.LabelFor(x => x.HinhAnh, new { @class = "control-label col-sm-3" })
+        @Html.LabelFor(model => model.HinhAnh, htmlAttributes: new { @class = "control-label col-sm-3" })
         <div class="col-sm-9">
-            <input type="file"
-                   name="file"
-                   accept="image/*" />
+            @Html.EditorFor(model => model.HinhAnh)
+            <input type="button" value="Chọn Ảnh ..." onclick="BrowseServer();" />
         </div>
     </div>
     <div class="form-group">
@@ -75,6 +76,27 @@
         </div>
     </div>
     <div class="form-group">
+        @Html.LabelFor(model => model.NoiDungSanPham, htmlAttributes: new { @class = "control-label col-sm-3" })
+        <div class="col-sm-9">
+            @Html.TextAreaFor(model => model.NoiDungSanPham, new { @id = "ckeContent" })
+            <script>
+                CKEDITOR.replace('ckeContent');
+                CKFinder.setupCKEditor(null, '/ckfinder');
+            </script>
+        </div>
+    </div>
+    <script type="text/javascript">
+        function BrowseServer() {
+            var finder = new CKFinder();
+            //finder.basePath = '../';
+            finder.selectActionFunction = SetFileField;
+            finder.popup();
+        }
+        function SetFileField(fileUrl) {
+            document.getElementById('HinhAnh').value = fileUrl;
+        }
+    </script>
+    <div class="form-group">
         <div class="col-sm-offset-3">
             <button type="submit" class="btn btn-info">
                 Thêm Mới
@@ -83,3 +105,4 @@
     </div>
 
 }
+

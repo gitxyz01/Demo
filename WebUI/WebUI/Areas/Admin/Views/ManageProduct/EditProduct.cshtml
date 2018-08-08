@@ -44,13 +44,10 @@
         </div>
     </div>
     <div class="form-group">
-        @Html.LabelFor(x => x.HinhAnh, new { @class = "control-label col-sm-2" })
+        @Html.LabelFor(model => model.HinhAnh, htmlAttributes: new { @class = "control-label col-sm-2" })
         <div class="col-sm-9">
-            <input type="file"
-                   name="file"
-                   accept="image/*" />
-            <img src="@Model.HinhAnh" style="height:100px;width:100px;" />
-
+            @Html.EditorFor(model => model.HinhAnh)
+            <input type="button" value="Chọn Ảnh ..." onclick="BrowseServer();" />
         </div>
     </div>
     <div class="form-group">
@@ -93,6 +90,27 @@
             @Html.TextAreaFor(x => x.Mota, new { @class = "control-label col-sm-12" })
         </div>
     </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.NoiDungSanPham, htmlAttributes: new { @class = "control-label col-sm-2" })
+        <div class="col-sm-9">
+            @Html.TextAreaFor(model => model.NoiDungSanPham, new { @id = "ckeContent" })
+            <script>
+                CKEDITOR.replace('ckeContent');
+                CKFinder.setupCKEditor(null, '/ckfinder');
+            </script>
+        </div>
+    </div>
+    <script type="text/javascript">
+        function BrowseServer() {
+            var finder = new CKFinder();
+            //finder.basePath = '../';
+            finder.selectActionFunction = SetFileField;
+            finder.popup();
+        }
+        function SetFileField(fileUrl) {
+            document.getElementById('HinhAnh').value = fileUrl;
+        }
+    </script>
 
     <div class="form-group">
         <div class="col-sm-offset-2">

@@ -20,6 +20,8 @@ namespace WebUI.Areas.Admin.Controllers
             DaPhongThuy = new Repository();
         }
         // GET: Admin/ManageProduct
+
+        [Authorize(Roles = "Đọc,Admin")]
         public ActionResult Index(int DanhmucId = 0, int page = 1)
         {
             
@@ -30,12 +32,16 @@ namespace WebUI.Areas.Admin.Controllers
         }
 
 
+        [Authorize(Roles = "Đọc,Admin")]
         public ActionResult HotProduct()
         {
             AdminProductListModel model = new AdminProductListModel();
             model.SanPhams = DaPhongThuy.SanPhams.Where(x => x.SPHot == true && x.TrangThai == true).ToList();
             return View(model);
         }
+
+        [Authorize(Roles = "Thêm,Admin")]
+        [ValidateInput(false)]
         public ActionResult AddProduct()
         {
             var danhMuc = DaPhongThuy.DanhMucSanPhams.Where(x => x.TrangThai == true).ToList();
@@ -44,6 +50,7 @@ namespace WebUI.Areas.Admin.Controllers
         }
 
         [HttpPost]
+        [ValidateInput(false)]
         public ActionResult AddProduct(SanPham sanPham)
         {
            
@@ -51,24 +58,25 @@ namespace WebUI.Areas.Admin.Controllers
             ViewBag.DanhMuc = danhMuc;
             if (string.IsNullOrWhiteSpace(sanPham.Ten))
             {
-                ModelState.AddModelError("", "Vui long nhap ten san pham");
+                ModelState.AddModelError("", "Bạn Chưa Nhập Tên Sản Phẩm");
             }
-            if (Request.Files.Count == 0 || Request.Files[0].ContentLength == 0)
-            {
-                ModelState.AddModelError("", "vui long chon file");
-            }
+            //if (Request.Files.Count == 0 || Request.Files[0].ContentLength == 0)
+            //{
+            //    ModelState.AddModelError("", "vui long chon file");
+            //}
             if (ModelState.IsValid)
             {
-                var file = Request.Files[0];
-                string root = Server.MapPath("~/Uploads");
-                file.SaveAs(Path.Combine(root, file.FileName));
-                sanPham.HinhAnh = "/Uploads/" + file.FileName;
+                //var file = Request.Files[0];
+                //string root = Server.MapPath("~/Uploads");
+                //file.SaveAs(Path.Combine(root, file.FileName));
+                //sanPham.HinhAnh = "/Uploads/" + file.FileName;
                 DaPhongThuy.SaveProduct(sanPham);
-                return RedirectToAction("Index");
+            return RedirectToAction("Index");
             }
             return View();
         }
 
+        [Authorize(Roles = "Sửa,Admin")]
         public ViewResult EditProduct(int id)
         {
             var danhMuc = DaPhongThuy.DanhMucSanPhams.Where(x => x.TrangThai == true).ToList();
@@ -78,37 +86,40 @@ namespace WebUI.Areas.Admin.Controllers
         }
 
         [HttpPost]
+        [ValidateInput(false)]
         public ActionResult EditProduct(SanPham sanPham)
         {
             var danhMuc = DaPhongThuy.DanhMucSanPhams.Where(x => x.TrangThai == true).ToList();
             ViewBag.DanhMuc = danhMuc;
             if (string.IsNullOrWhiteSpace(sanPham.Ten))
             {
-                ModelState.AddModelError("", "Vui long nhap ten san pham");
+                ModelState.AddModelError("", "Bạn Chưa Nhập Tên Sản Phẩm");
             }
             if (ModelState.IsValid)
             {
-                if (Request.Files.Count > 0 && Request.Files[0].ContentLength > 0)
-                {
-                    try
-                    {
-                        FileInfo f = new FileInfo(Server.MapPath("~" + sanPham.HinhAnh));
-                        f.Delete();
-                    }
-                    catch (Exception ex)
-                    {
+                //if (Request.Files.Count > 0 && Request.Files[0].ContentLength > 0)
+                //{
+                //    try
+                //    {
+                //        FileInfo f = new FileInfo(Server.MapPath("~" + sanPham.HinhAnh));
+                //        f.Delete();
+                //    }
+                //    catch (Exception ex)
+                //    {
                         
-                    }
-                    var file = Request.Files[0];
-                    string root = Server.MapPath("~/Uploads");
-                    file.SaveAs(Path.Combine(root, file.FileName));
-                    sanPham.HinhAnh = "/Uploads/" + file.FileName;
-                }
+                //    }
+                //    var file = Request.Files[0];
+                //    string root = Server.MapPath("~/Uploads");
+                //    file.SaveAs(Path.Combine(root, file.FileName));
+                //    sanPham.HinhAnh = "/Uploads/" + file.FileName;
+                //}
                 DaPhongThuy.SaveProduct(sanPham);
                 return RedirectToAction("Index");
             }
             return View();
         }
+
+        [Authorize(Roles = "Xóa,Admin")]
         public ActionResult DeleteProduct(int id)
         {
             DaPhongThuy.DeleteProduct(new SanPham() { ProductID = id });

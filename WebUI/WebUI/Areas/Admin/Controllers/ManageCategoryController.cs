@@ -11,6 +11,7 @@ using WebUI.Models;
 
 namespace WebUI.Areas.Admin.Controllers
 {
+
     public class ManageCategoryController : Controller
     {
         private IMainRepository DaPhongThuy;
@@ -19,6 +20,7 @@ namespace WebUI.Areas.Admin.Controllers
             DaPhongThuy = new Repository();
         }
         // GET: Admin/ManageCategory
+        [Authorize(Roles = "Đọc,Admin")]
         public ActionResult Index()
         {
             AdminProductListModel model = new AdminProductListModel();
@@ -27,6 +29,8 @@ namespace WebUI.Areas.Admin.Controllers
                 .ToList();
             return View(model);
         }
+
+        [Authorize(Roles = "Thêm,Admin")]
         public ViewResult AddCategory()
         {
             return View();
@@ -48,6 +52,7 @@ namespace WebUI.Areas.Admin.Controllers
             }
             return View();
         }
+        [Authorize(Roles = "Sửa,Admin")]
         public ViewResult EditCategory(int id)
         {
             var model = DaPhongThuy.DanhMucSanPhams.FirstOrDefault(x => x.CategoryProductID == id);
@@ -64,6 +69,8 @@ namespace WebUI.Areas.Admin.Controllers
             }
             return View();
         }
+
+        [Authorize(Roles = "Xóa,Admin")]
         public ActionResult DeleteCategory(int id)
         {
             DaPhongThuy.DeleteCategory(new DanhMucSanPham { CategoryProductID = id });

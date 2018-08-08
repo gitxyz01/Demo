@@ -28,6 +28,8 @@ namespace WebUI.Areas.Admin.Controllers
             newRepository = new NewRepository();
         }
         // GET: Admin/ManageNew
+
+        [Authorize(Roles = "Đọc,Admin")]
         public ActionResult Index(int newCategoryId=0)
         {
            AdminNewViewModel model = new AdminNewViewModel();
@@ -35,7 +37,8 @@ namespace WebUI.Areas.Admin.Controllers
             //var model = newRepository.News.Where(x => x.TrangThai == true).ToList();
             return View(model);
         }
-   
+
+        [Authorize(Roles = "Thêm,Admin")]
         public ViewResult Create()
         {
             GetViewbagNewCategory();
@@ -59,6 +62,7 @@ namespace WebUI.Areas.Admin.Controllers
             return View();
         }
 
+        [Authorize(Roles = "Sửa,Admin")]
         public ActionResult Edit(long id)
         {
             GetViewbagNewCategory();
@@ -80,6 +84,7 @@ namespace WebUI.Areas.Admin.Controllers
             return View();
         }
 
+        [Authorize(Roles = "Xóa,Admin")]
         public ViewResult ConfirmDelete(long id)
         {
             var model =newRepository.GetNewById(id);

@@ -9,6 +9,7 @@ using System.Web.Mvc;
 
 namespace WebUI.Areas.Admin.Controllers
 {
+ 
     public class ManageMenuController : Controller
     {
         // GET: Admin/ManageMenu
@@ -21,12 +22,15 @@ namespace WebUI.Areas.Admin.Controllers
         }
         // GET: Admin/ManageMenuType
 
+        [Authorize(Roles = "Đọc,Admin")]
         public ActionResult Index(long menuTypeId=1)
         {
             var model = service.GetListMenus(menuTypeId);
             return View(model);
         }
 
+
+        [Authorize(Roles = "Thêm,Admin")]
         public ViewResult Create()
         {
             ViewBag.MenuType = menuTypeService.GetListMenuType();
@@ -50,6 +54,7 @@ namespace WebUI.Areas.Admin.Controllers
             return View();
         }
 
+        [Authorize(Roles = "Sửa,Admin")]
         public ViewResult Edit(long id)
         {
             ViewBag.MenuType = menuTypeService.GetListMenuType();

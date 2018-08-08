@@ -5,23 +5,29 @@
 <ul id="col-lg-12 layered_filter_ul">
     @foreach (var cate in Model)
     {
-        <li >
-            <a href="@Url.Action("Index","Product",new {category=cate.CategoryProductID})">
+        <li>
+            <a style="text-decoration:none;" href="@Url.Action("Index","Product",new {category=cate.CategoryProductID})">
                 @cate.Ten
-                @*<span class="badge">
+                <span class="badge">
                     @{int count = cate.SanPhams.Count();
                         total += count;
                     }
                     @count
-                </span>*@
+                </span>
             </a>
         </li>
     }
+    <li>
+        <a style="text-decoration:none;" href="@Url.Action("HotProduct","Product")">
+            Sản Phẩm Hot
+           
+        </a>
+    </li>
     @*<li class="nomargin col-lg-12">
-        <a class="left-category-link-displayproduct left-menu-product" href="@Url.Action("Index","Product",new {category=0})">
-            Tất Cả <span class="badge">@total</span>
-        </a>    
-    </li>*@
+            <a class="left-category-link-displayproduct left-menu-product" href="@Url.Action("Index","Product",new {category=0})">
+                Tất Cả <span class="badge">@total</span>
+            </a>
+        </li>*@
 
 
 </ul>

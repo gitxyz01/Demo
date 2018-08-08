@@ -22,6 +22,15 @@ namespace WebUI.Controllers
             DaPhongThuy = new Repository();
             menuSevice = new MenuService();
         }        
+        public void SaleProductFeature()
+        {
+            var model = DaPhongThuy.SanPhams.Where(x => x.GiaKhuyenMai > 0 && x.TrangThai == true)
+                .OrderBy(x => x.ProductID)
+                .Take(8)
+                .ToList();
+            ViewBag.SaleProduct = model;
+        }
+
         public void HotProductFeature()
         {           
              var model = DaPhongThuy.SanPhams.Where(x => x.SPHot == true && x.TrangThai == true)
@@ -39,7 +48,7 @@ namespace WebUI.Controllers
                 .ToList();
             ViewBag.NewProducts = model;
             HotProductFeature();
-            
+            SaleProductFeature();
             return View();
         }      
         public ActionResult _HomeHotProductPartial()
@@ -89,5 +98,9 @@ namespace WebUI.Controllers
             return PartialView(model);
         }
 
+        public ViewResult Complete()
+        {
+            return View();
+        }
     }
 }

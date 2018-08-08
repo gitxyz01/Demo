@@ -41,7 +41,8 @@
                             @Html.Partial("ListFeatureProducts", (List<Domain.Concrete.SanPham>)ViewBag.Hotproducts)
                         </ul>
                         <ul id="classicstyle" class="product_list grid row blockbestsellers tab-pane">
-                            @{Html.RenderAction("_HomeSaleProductPartial", "Home");}
+                            @Html.Partial("ListFeatureSaleProduct", (List<Domain.Concrete.SanPham>)ViewBag.SaleProduct)
+                     
                         </ul>                    
                     </div>
 

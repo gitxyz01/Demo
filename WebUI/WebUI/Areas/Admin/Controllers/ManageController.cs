@@ -10,6 +10,7 @@ using WebUI.Models;
 
 namespace WebUI.Areas.Admin.Controllers
 {
+    [Authorize(Roles = "Admin")]
     [Authorize]
     public class ManageController : Controller
     {

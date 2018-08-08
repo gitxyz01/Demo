@@ -19,6 +19,8 @@ namespace WebUI.Areas.Admin.Controllers
             newCategoryRepository = new NewCategoryRepository();
         }
         // GET: Admin/ManageNewCategory
+
+        [Authorize(Roles = "Đọc,Admin")]
         public ActionResult Index()
         {
             AdminCategoryViewModel model = new AdminCategoryViewModel();
@@ -27,6 +29,7 @@ namespace WebUI.Areas.Admin.Controllers
             
         }
 
+        [Authorize(Roles = "Thêm,Admin")]
         public ViewResult Create()
         {
             return View();
@@ -48,6 +51,7 @@ namespace WebUI.Areas.Admin.Controllers
             return View();
         }
 
+        [Authorize(Roles = "Sửa,Admin")]
         public ViewResult Edit(long id)
         {
             var model = newCategoryRepository.GetById(id);
@@ -72,6 +76,7 @@ namespace WebUI.Areas.Admin.Controllers
             return View();            
         }
 
+        [Authorize(Roles = "Xóa,Admin")]
         public ViewResult ConfirmDelete(long id)
         {
             var model = newCategoryRepository.GetById(id);

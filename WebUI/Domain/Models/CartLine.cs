@@ -60,5 +60,11 @@ namespace Domain.Models
         {
             LineCollection.Clear();
         }
+        public decimal ComputerTotalQuantity()
+        {
+            return LineCollection
+                .Sum(x => x.Quantity)
+                ;
+        }
     }
  }

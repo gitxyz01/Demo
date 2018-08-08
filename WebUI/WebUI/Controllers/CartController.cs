@@ -102,7 +102,7 @@ namespace WebUI.Controllers
                 service.ProsessOrder(shippingDetails, cart);
                 cart.Clear();
                 Session["Cart"] = null;
-                return View("Complete");
+                return RedirectToAction("Complete","Home");
             }
             return View();
         }

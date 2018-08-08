@@ -48,7 +48,7 @@
             <div class="col-md-3 left_col">
                 <div class="left_col scroll-view">
                     <div class="navbar nav_title" style="border: 0;">
-                        <a href="@Url.Action("Index","HomeAdmin",new {area="Admin" })" class="site_title"><i class="fa fa-paw"></i> <span>Trang Chủ</span></a>
+                        <a href="@Url.Action("Index","HomeAdmin",new {area="Admin" })" class="site_title"><i class="fa fa-paw"></i> <span>Trang Admin</span></a>
                     </div>
 
                     <div class="clearfix"></div>
@@ -114,7 +114,7 @@
                                     <a><i class="fa fa-windows"></i> Quản Lý Menu <span class="fa fa-chevron-down"></span></a>
                                     @{Html.RenderAction("_ListMenuTypePartial", "ManageMenu", new { area = "Admin" });}
                                 </li>
-                                <li>
+                                @*<li>
                                     <a><i class="fa fa-sitemap"></i> Multilevel Menu <span class="fa fa-chevron-down"></span></a>
                                     <ul class="nav child_menu">
                                         <li><a href="#level1_1">Level One</a>
@@ -136,8 +136,8 @@
                                             <a href="#level1_2">Level One</a>
                                         </li>
                                     </ul>
-                                </li>
-                                <li><a href="javascript:void(0)"><i class="fa fa-laptop"></i> Landing Page <span class="label label-success pull-right">Coming Soon</span></a></li>
+                                </li>*@
+                                @*<li><a href="javascript:void(0)"><i class="fa fa-laptop"></i> Landing Page <span class="label label-success pull-right">Coming Soon</span></a></li>*@
                             </ul>
                         </div>
 

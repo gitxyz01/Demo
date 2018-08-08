@@ -8,7 +8,7 @@ using WebUI.Models;
 
 namespace WebUI.Areas.Admin.Controllers
 {
-   
+    [Authorize(Roles = "Admin")]
     public class ManageRoleController : Controller
     {
         // GET: Admin/ManageRoles
