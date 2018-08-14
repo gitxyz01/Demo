@@ -17,6 +17,7 @@ namespace WebUI.Areas.Admin.Controllers
     public class ManageOrderController : Controller
     {
         private IOrderService service;
+        private OrderRepository repo = new OrderRepository();
 
 
         public ManageOrderController()
@@ -43,6 +44,7 @@ namespace WebUI.Areas.Admin.Controllers
         {
             GetDropdowlistOrderStatus();
             var model = service.GetListOrderActive(customerId);
+            
             return View(model);
         }
 

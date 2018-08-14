@@ -21,7 +21,7 @@ namespace WebUI.Models
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public ApplicationDbContext()
-            : base("DaPhongThuy1", throwIfV1Schema: false)
+            : base("DaPhongThuyEF", throwIfV1Schema: false)
         {
         }
 
