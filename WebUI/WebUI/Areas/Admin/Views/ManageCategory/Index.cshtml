@@ -13,42 +13,37 @@
 <table id="datatable" class="table table-striped table-bordered dataTable no-footer" role="grid" aria-describedby="datatable_info">
     <thead>
         <tr>
-            <th class="col-sm-1">Mã Danh Mục</th>
+            <th class="col-sm-1"><strong>Thứ Tự Hiển Thị</strong></th>
             <th class="col-sm-1"><strong>Tên Danh Mục</strong></th>
             <th class="col-sm-1"><strong>Số Lượng Sản Phẩm</strong></th>
-            <th class="col-sm-1"><strong>Thứ Tự Hiển Thị</strong></th>
             <th class="col-sm-1"><strong>Ngày Tạo</strong></th>
             <th class="col-sm-1"><strong>Nguoi Tạo</strong></th>
-
             <th class="col-sm-1"><strong>Ngày Chinh Sua</strong></th>
-
             <th class="col-sm-1">Chỉnh Sửa</th>
             <th class="col-sm-1"> Xóa</th>
-
         </tr>
     </thead>
     <tbody>
         @foreach (var danhMuc in Model.DanhMucSanPhams)
         {
-            <tr>
-                <td>@danhMuc.CategoryProductID</td>
-                <td>@danhMuc.Ten</td>
-                <td>@danhMuc.SanPhams.Count()</td>
-                <td>@danhMuc.ThuTuHienThi</td>
-                <td>@danhMuc.NgayTao</td>
-                <td>@danhMuc.NguoiTao</td>
-                <td>@danhMuc.NgayChinhSua</td>
-                <td>
-                    <a href="@Url.Action("EditCategory","ManageCategory",new {id=danhMuc.CategoryProductID })">
-                        <i class="glyphicon glyphicon-edit btn btn-info"></i>
-                    </a>
-                </td>
-                <td>
-                    <a href="@Url.Action("DeleteCategory","ManageCategory",new {id=danhMuc.CategoryProductID })">
-                        <i class="glyphicon glyphicon-remove-sign btn btn-info  "></i>
-                    </a>
-                </td>
-            </tr>
+        <tr>
+            <td>@danhMuc.ThuTuHienThi</td>
+            <td>@danhMuc.Ten</td>
+            <td>@danhMuc.SanPhams.Count()</td>
+            <td>@danhMuc.NgayTao</td>
+            <td>@danhMuc.NguoiTao</td>
+            <td>@danhMuc.NgayChinhSua</td>
+            <td>
+                <a href="@Url.Action("EditCategory","ManageCategory",new {id=danhMuc.CategoryProductID })">
+                    <i class="glyphicon glyphicon-edit btn btn-info"></i>
+                </a>
+            </td>
+            <td>
+                <a href="@Url.Action("DeleteCategory","ManageCategory",new {id=danhMuc.CategoryProductID })">
+                    <i class="glyphicon glyphicon-remove-sign btn btn-info  "></i>
+                </a>
+            </td>
+        </tr>
         }
     </tbody>
 </table>

@@ -1,7 +1,8 @@
-namespace Domain.Concrete
+﻿namespace Domain.Concrete
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
@@ -18,12 +19,14 @@ namespace Domain.Concrete
         [Key]
         public long CategoryProductID { get; set; }
 
+        [DisplayName("Tên")]
         [StringLength(200)]
         public string Ten { get; set; }
 
         [StringLength(200)]
         public string MetaTitle { get; set; }
 
+        [DisplayName("Thứ Tự Hiển Thị")]
         public int? ThuTuHienThi { get; set; }
 
         [StringLength(200)]
@@ -39,6 +42,7 @@ namespace Domain.Concrete
         [StringLength(50)]
         public string NguoiChinhSua { get; set; }
 
+        [DisplayName("Trạng Thái")]
         public bool? TrangThai { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

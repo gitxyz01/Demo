@@ -35,11 +35,17 @@
                             <i class="glyphicon glyphicon-edit btn btn-info"> </i>
                         </a>
                     </td>
+                    @if(item.Email != "Admin@gmail.com") { 
                     <td>
                         <a href="@Url.Action("Delete", "ManageUser",new { Id = item.Id })">
                             <i class="glyphicon glyphicon-remove btn btn-info"> </i>
                         </a>
                     </td>
+                    }
+                    else
+                    {
+                        <td></td>
+                    }
                 </tr>
                 }
             </tbody>

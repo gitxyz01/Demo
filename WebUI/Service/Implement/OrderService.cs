@@ -93,6 +93,7 @@ namespace Service.Implement
             var orderToUpdate = orderRepository.GetOrderById(order.OrderId);
             if (orderToUpdate != null)
             {
+                orderToUpdate.ModifiedDate = DateTime.Now;
                 orderToUpdate.Status = order.IntStatus;
                 orderRepository.Save();
             }

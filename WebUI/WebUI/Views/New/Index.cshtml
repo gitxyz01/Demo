@@ -1,6 +1,17 @@
 ﻿@model List<Domain.Models.ListNewAdminViewModel>
 @{
-    ViewBag.Title = "Index";
+    foreach (var item in Model)
+    {
+        if (item.ThuTuHienThi < 1000) {
+            ViewBag.Title = "Tin Tức";
+        }
+        else
+        {
+            ViewBag.Title = "Blog";
+        }
+    }
+
+
 
     Layout = "~/Views/Shared1/_Layout.cshtml";
 }

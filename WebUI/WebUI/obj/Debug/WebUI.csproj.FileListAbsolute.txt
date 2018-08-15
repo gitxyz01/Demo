@@ -251,9 +251,7 @@ E:\Git\Demo\WebUI\WebUI\bin\Microsoft.AI.DependencyCollector.xml
 E:\Git\Demo\WebUI\WebUI\bin\Microsoft.AI.WindowsServer.xml
 E:\Git\Demo\WebUI\WebUI\bin\Microsoft.AI.Web.xml
 E:\Git\Demo\WebUI\WebUI\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
-E:\Git\Demo\WebUI\WebUI\obj\Debug\WebUI.csprojAssemblyReference.cache
 E:\Git\Demo\WebUI\WebUI\obj\Debug\WebUI.csproj.CoreCompileInputs.cache
-E:\Git\Demo\WebUI\WebUI\obj\Debug\WebUI.csproj.CopyComplete
 E:\Git\Demo\WebUI\WebUI\obj\Debug\WebUI.dll
 E:\Git\Demo\WebUI\WebUI\obj\Debug\WebUI.pdb
 E:\Git\Demo\WebUI\WebUI\bin\roslyn\System.Security.Cryptography.Primitives.dll
@@ -262,3 +260,4 @@ E:\Git\Demo\WebUI\WebUI\bin\roslyn\System.IO.FileSystem.Primitives.dll
 E:\Git\Demo\WebUI\WebUI\bin\roslyn\System.Reflection.Metadata.dll
 E:\Git\Demo\WebUI\WebUI\bin\roslyn\System.Collections.Immutable.dll
 E:\Git\Demo\WebUI\WebUI\bin\roslyn\System.IO.FileSystem.dll
+E:\Git\Demo\WebUI\WebUI\obj\Debug\WebUI.csprojResolveAssemblyReference.cache
