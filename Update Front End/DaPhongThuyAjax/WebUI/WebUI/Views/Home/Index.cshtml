@@ -1,0 +1,99 @@
+﻿
+@{
+    ViewBag.Title = "Trang Chủ";
+    Layout = "~/Views/Shared1/_Layout.cshtml";
+}
+
+<div id="columns" class="container">
+    <div id="slider_row" class="row">
+        <div id="top_column" class="center_column col-xs-12 col-sm-12">
+            <div id="htmlcontent_top">
+                <ul class="htmlcontent-home clearfix row">
+                    @foreach (var item in (List<Domain.Models.MenuViewModel>)ViewBag.TopBanner)
+                    {
+                        <li class="htmlcontent-item-3 col-xs-4">
+                            <a href="@item.Link" class="item-link active_hover" title="" style="font-size: 32px!important;">
+                                <img src="@item.Image" class="item-img" title="" alt="" width="100%" height="100%">
+                                <div class="item-html">
+                                    <h3>@item.Text</h3>
+                                </div>
+                            </a>
+                        </li>
+                    }                    
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="large-left col-sm-12">
+            <div class="row">
+                <div id="center_column" class="center_column col-xs-12 col-sm-12 accordionBox">
+                    <ul id="home-page-tabs" class="nav nav-tabs clearfix">
+                        <li class="blocknewproducts active"><a data-toggle="tab" href="#blocknewproducts" class="blocknewproducts">Sản phẩm mới</a></li>
+                        <li class="blockbestsellers"><a data-toggle="tab" href="#blockbestsellers" class="blockbestsellers">Sản phẩm HOT</a></li>
+                        @*<li class="classicstyle"><a data-toggle="tab" href="#classicstyle" class="classicstyle">Sản Phẩm Khuyến Mãi</a></li>*@
+                    </ul>
+                    <div class="tab-content">
+                        <ul id="blocknewproducts" class="product_list grid row blocknewproducts tab-pane active">
+                            @Html.Partial("ListFeatureProducts", (List<Domain.Concrete.SanPham>)ViewBag.NewProducts)
+                        </ul>
+                        <ul id="blockbestsellers" class="product_list grid row blockbestsellers tab-pane">
+                            @Html.Partial("ListFeatureProducts", (List<Domain.Concrete.SanPham>)ViewBag.Hotproducts)
+                        </ul>
+                        @*<ul id="classicstyle" class="product_list grid row blockbestsellers tab-pane">
+                            @Html.Partial("ListFeatureSaleProduct", (List<Domain.Concrete.SanPham>)ViewBag.SaleProduct)
+                     
+                        </ul>*@                    
+                    </div>
+
+                         <div class="home-column">
+            <div id="htmlcontent_home">
+                <ul class="htmlcontent-home clearfix row">
+                    <li class="htmlcontent-item-1 col-xs-12">
+                        
+                    </li>
+                </ul>
+            </div>
+
+            @Html.Action("_BlogPartial")
+        </div> 
+                </div>
+                   
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="home-column">
+    </div>
+
+    <script>
+        $(document).ready(function () {
+
+            function showFancyBox() {
+                if ($("#bannerPopup").length > 0) {
+                    $("#bannerPopup").fancybox();
+                    $("#bannerPopup").trigger('click');
+                    $(".fancybox-overlay").unbind();
+                }
+            }
+            showFancyBox();
+
+            $("#SearchProduct_Btn").unbind("click").bind("click", function (e) {
+                searchProduct();
+            });
+            $("#tmsearch #tm_search_query").unbind("keypress").bind("keypress", function (e) {
+                if (e.keyCode == 13) {
+                    searchProduct();
+                }
+            });
+
+            function searchProduct() {
+                var searchString = $("#tmsearch #tm_search_query").val();
+                window.location.replace("/Product/SearchProduct?searchString=" + searchString);
+            }
+        });
+    </script>
+
+
+

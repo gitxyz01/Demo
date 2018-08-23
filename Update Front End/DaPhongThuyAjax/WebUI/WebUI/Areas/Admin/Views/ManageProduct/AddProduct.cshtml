@@ -1,0 +1,108 @@
+﻿@model Domain.Concrete.SanPham
+
+@{
+    /**/
+
+    ViewBag.Title = "AddProduct";
+    Layout = "~/Areas/Admin/Views/Shared/_NewLayout.cshtml";
+}
+
+
+<h1 style="text-align:center;"><label class="btn btn-success"> Thêm Mới Sản Phẩm</label></h1>
+
+
+@using (Html.BeginForm("AddProduct", "ManageProduct", FormMethod.Post, new { @class = "form-horizontal", enctype = "multipart/form-data" }))
+{
+
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-group">
+        @Html.LabelFor(x => x.MaSP, new { @class = "control-label col-sm-3" })
+        <div class="col-sm-9">
+            @Html.TextBoxFor(x => x.MaSP, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(x => x.Ten, new { @class = "control-label col-sm-3" })
+        <div class="col-sm-9">
+            @Html.TextBoxFor(x => x.Ten, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(x => x.SoLuong, new { @class = "control-label col-sm-3" })
+        <div class="col-sm-9">
+            @Html.TextBoxFor(x => x.SoLuong, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(x => x.Gia, new { @class = "control-label col-sm-3" })
+        <div class="col-sm-9">
+            @Html.TextBoxFor(x => x.Gia, new { @class = "form-control" })
+        </div>
+    </div>
+
+    @*<div class="form-group">
+        @Html.LabelFor(x => x.GiaKhuyenMai, new { @class = "control-label col-sm-3" })
+        <div class="col-sm-9">
+            @Html.TextBoxFor(x => x.GiaKhuyenMai, new { @class = "form-control" })
+        </div>
+    </div>*@
+    <div class="form-group">
+        @Html.LabelFor(model => model.HinhAnh, htmlAttributes: new { @class = "control-label col-sm-3" })
+        <div class="col-sm-9">
+            @Html.EditorFor(model => model.HinhAnh)
+            <input type="button" value="Chọn Ảnh ..." onclick="BrowseServer();" />
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(x => x.CategoryProductID, new { @class = "control-label col-sm-3" })
+        <div class="col-sm-9">
+            @Html.DropDownListFor(x => x.CategoryProductID,
+        new SelectList(ViewBag.DanhMuc, "CategoryProductID", "Ten"),
+         new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(x => x.SPHot, new { @class = "control-label col-sm-3" })
+        <div class="col-sm-9">
+            <input type="checkbox"
+                   name="SPHot"
+                   value="true" /> Sản Phẩm Hot
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(x => x.Mota, new { @class = "control-label col-sm-3" })
+        <div class="col-sm-9">
+            @Html.TextAreaFor(x => x.Mota, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.NoiDungSanPham, htmlAttributes: new { @class = "control-label col-sm-3" })
+        <div class="col-sm-9">
+            @Html.TextAreaFor(model => model.NoiDungSanPham, new { @id = "ckeContent" })
+            <script>
+                CKEDITOR.replace('ckeContent');
+                CKFinder.setupCKEditor(null, '/ckfinder');
+            </script>
+        </div>
+    </div>
+    <script type="text/javascript">
+        function BrowseServer() {
+            var finder = new CKFinder();
+            //finder.basePath = '../';
+            finder.selectActionFunction = SetFileField;
+            finder.popup();
+        }
+        function SetFileField(fileUrl) {
+            document.getElementById('HinhAnh').value = fileUrl;
+        }
+    </script>
+    <div class="form-group" style="position:relative;left:16px;">
+        <div class="col-sm-offset-3">
+            <button type="submit" class="btn btn-info">
+                Thêm Mới
+            </button>
+        </div>
+    </div>
+
+}
+

@@ -1,0 +1,30 @@
+﻿@model List<Domain.Concrete.DanhMucSanPham>
+
+@{int total = 0;
+}
+<ul class="nav child_menu">
+
+    @foreach (var cate in Model)
+    {
+        <li>
+            <a href="@Url.Action("Index","ManageProduct",new {DanhmucId=cate.CategoryProductID})">
+                @cate.Ten
+                <span class="badge">
+                    @{int count = cate.SanPhams.Count();
+                        total += count;
+                    }
+                    @count
+                </span>
+            </a>
+        </li>
+    }
+    <li>
+        <a href="@Url.Action("Index","ManageProduct",new {category=0})">
+            Tất Cả <span class="badge">@total</span>
+        </a>
+    </li>
+    <li>
+        <a href="@Url.Action("HotProduct","ManageProduct")">Sản Phẩm Hot</a>
+    </li>
+</ul>
+

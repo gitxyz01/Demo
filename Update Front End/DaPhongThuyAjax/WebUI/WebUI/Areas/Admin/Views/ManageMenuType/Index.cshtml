@@ -1,0 +1,42 @@
+﻿@model IEnumerable<Domain.Models.MenuTypeViewModel>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_NewLayout.cshtml";
+}
+
+<h1 style="text-align:center;">Danh Sách Danh Mục Menu</h1>
+<h3>
+    <button class="btn btn-info glyphicon glyphicon-plus">
+        @Html.ActionLink("Thêm Loại Menu", "Create", "ManageMenuType", "", null)
+    </button>
+</h3>
+
+
+<table id="datatable" class="table table-striped table-bordered dataTable no-footer" role="grid" aria-describedby="datatable_info">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Tên loại Menu</th>
+            <th>Sửa</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.MenuTypeId</td>
+                <td>@item.Name</td>
+             
+                <td>
+                    <a href="@Url.Action("Edit", "ManageMenuType",new {id=item.MenuTypeId })">
+                        <i class="glyphicon glyphicon-edit btn btn-info"> </i>
+                    </a>
+                </td>
+
+            </tr>
+        }
+    </tbody>    
+</table>
+        

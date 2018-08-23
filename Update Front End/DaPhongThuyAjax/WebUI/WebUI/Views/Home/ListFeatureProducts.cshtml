@@ -1,0 +1,61 @@
+﻿@model List<Domain.Concrete.SanPham>
+
+@if (Model != null)
+{
+foreach (var item in Model)
+{
+    <li class="ajax_block_product col-xs-12 col-sm-4 col-md-2">
+        <div class="product-container" itemscope="" itemtype="https://schema.org/Product">
+            <div class="left-block">
+                <div class="product-image-container">
+                    <a class="product_img_link" href="/Product/ProductDetails/@item.ProductID" title="Side Table" itemprop="url">
+                        <img class="replace-2x img-responsive" src='@item.HinhAnh' alt='@item.Ten ' title='@item.Ten' itemprop="image">
+                    </a>
+                </div>
+            </div>
+            <div class="right-block">
+                <h5 itemprop="name">
+                    <a class="product-name" href="" title="@item.Ten" itemprop="url">
+                        <div class="grid-name">@item.Ten</div>
+                    </a>
+                </h5>
+                <p class="product-desc" itemprop="description">
+                    <span class="grid-desc">Fashion in this case is really...</span>
+                </p>
+                <div class="content_price" itemprop="offers" itemscope="" itemtype="https://schema.org/Offer">
+                    <span class="price product-price product-price-new">
+                        @String.Format(System.Globalization.CultureInfo.GetCultureInfo("vi-VN"), "{0:C0}", item.Gia)
+                    </span>
+                </div>
+                <div class="content_price" itemprop="offers" itemscope="" itemtype="https://schema.org/Offer">
+                    <form action="@Url.Action("AddToCart", "Cart")" method="post">
+                        <input type="hidden"
+                               name="id"
+                               value="@item.ProductID" />
+                        <button type="submit" class="btn btn-success">
+                            Thêm Vào Giỏ Hàng
+                            <i class="glyphicon glyphicon-shopping-cart"></i>
+                        </button>
+                    </form>
+                </div><!-- product price -->
+                <span class="availability">
+                    <span class=" label-success">
+                        Còn hàng
+                    </span>
+                </span>
+                <div class="wrap_block">
+                    <div class="button-container">
+                        <a itemprop="url" class="lnk_view btn btn-default" href="/Product/ProductDetails/@item.ProductID" title="View">
+                            <span>Chi tiết</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </li>
+    }
+}
+else
+{
+    <h3>Error</h3>
+}

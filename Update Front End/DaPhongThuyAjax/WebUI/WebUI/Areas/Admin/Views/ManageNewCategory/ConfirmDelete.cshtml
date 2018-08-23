@@ -1,0 +1,18 @@
+﻿@model Domain.Concrete.DanhMucTinTuc
+@{
+    ViewBag.Title = "ConfirmDelete";
+    Layout = "~/Areas/Admin/Views/Shared/_NewLayout.cshtml";
+}
+
+<h1 style="text-align:center;">Bạn Muốn Xóa Danh Mục Tin Tức Này</h1>
+
+<div class="text-center">
+
+    <h5>Bạn có chắc muốn xóa : @Model.Ten?</h5>
+    <a href="@Url.Action("Delete","ManageNewCategory",new {id=Model.NewCategoryID })" class="btn btn-default">Xóa</a>
+    <a href="@Url.Action("Index")" class="btn btn-default">Không xóa</a>
+
+
+
+</div>
+

@@ -1,0 +1,224 @@
+﻿
+@{
+    ViewBag.Title = "AjaxCartIndex";
+    Layout = "~/Views/Shared1/_Layout.cshtml";
+}
+<script src="~/Plugins/mustache.min.js"></script>
+<script src="~/Plugins/JsController/CartController.js"></script>
+
+
+
+
+<div class="columns-container">
+    <div id="columns" class="container">
+        <div class="breadcrumb clearfix">
+            <a class="home" href="/" title="Trở về Trang chủ">
+                <i class="fa fa-home"></i>
+            </a>
+            <span class="navigation-pipe">&gt;</span>
+
+        </div><!-- breadcrumb -->
+        <div class="row">
+
+            <!-- content -->
+            <div class="large-left col-sm-12">
+                <div class="row">
+                    <div id="center_column" class="center_column col-xs-12 col-sm-9 accordionBox">
+
+                        <h3>
+                            Giỏ Hàng Của Bạn<i class="glyphicon glyphicon-shopping-cart"></i>
+                        </h3> <!-- title category panel -->
+
+                        <div class="content_sortPagiBar clearfix">
+
+                            <div class="top-pagination-content clearfix">
+
+                            </div><!-- pagination-content bar -->
+                        </div><!-- sort bar -->
+
+
+
+                        <table class="table table-data-sheet table-bordered" style=" width:900px;">
+                            <thead class="table-bordered">
+                                <tr >
+                                    <td style="font-weight:bold; text-align:center;">Sản Phẩm</td>
+                                    <td style="font-weight:bold; text-align:center;">Tên Sản Phẩm</td>
+                                    <td style="font-weight:bold; text-align:center;">Số Lượng</td>
+                                    <td style="font-weight:bold; text-align:center;">Đơn Giá</td>
+                                    <td style="font-weight:bold; text-align:center;">Thành Tiền</td>
+                                    <td>Xóa</td>
+                                </tr>
+                            </thead>
+                            <tbody id="table-data">
+
+                            </tbody>
+                          
+                        </table>
+                        <br />
+
+                        <div class="row" style="position:relative; left:300px;">
+                            <div class=" col-sm-6" style="right:4em;">
+                                <a href="@Url.Action("Index","Product")">
+                                    <i class="btn btn-primary">Tiếp Tục Mua Hàng   </i>
+                                </a>
+                            </div>
+
+                            <div class=" col-sm-6" style="right:250px;">
+                                <a href="@Url.Action("Checkout","Cart")" class="btn btn-primary">
+                                    Đặt Hàng
+                                </a>
+
+                            </div>
+                        </div>
+
+                        <br />
+                        <br />
+                        <br />
+                        <br />
+
+
+                        <!-- list product -->
+                        <div class="content_sortPagiBar">
+                            <div class="bottom-pagination-content clearfix">
+
+                            </div>
+                        </div><!-- sort bar -->
+                    </div><!-- list product panel -->
+                    <div id="left_column" class="column col-xs-12 col-sm-3">
+                        <section id="layered_block_left" class="block">
+                            <h4 class="title_block">DANH MỤC</h4>
+                            <div class="block_content">
+
+                                @using (Html.BeginForm("SearchProductByPrice", "Product", FormMethod.Post, new { @id = "layered_form", enctype = "multipart/form-data" }))
+                                {
+                                    @Html.ValidationSummary()
+                                    <div>
+                                        <div class="layered_filter">
+                                            <div class="layered_subtitle_heading">
+                                                <span class="layered_subtitle">Danh mục sản phẩm</span>
+                                            </div>
+                                            @{Html.RenderAction("_HomeMenuCategoryPartial", "Home");}
+                                        </div>
+                                        @*<div class="layered_filter">
+                                                <div class="layered_subtitle_heading">
+                                                    <span class="layered_subtitle">Thương hiệu</span>
+
+                                                </div>
+                                                @*<ul class="col-lg-12 layered_filter_ul">
+                                                    @foreach (var brand in @Model.Brands)
+                                                    {
+                                                        <li class="nomargin col-lg-12">
+                                                            <label><input type="checkbox" class="ckb-brand-filtercontent" data-id=@brand.Id> @brand.Name</label>
+                                                        </li>
+                                                    }
+                                                </ul>*
+                                            </div>*@
+                                        <div class="layered_price clearfix" style="">
+                                            <div class="layered_subtitle_heading">
+                                                <span class="layered_subtitle">Tìm Theo Giá</span>
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Tu</label>
+                                                <div class="col-sm-5">
+                                                    <input type="number" name="minPrice" min="0" step="500000" required />
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label>Den</label>
+                                                <div class="col-sm-5">
+                                                    <input type="number" name="maxPrice" max="10000000" step="500000" required />
+                                                </div>
+                                            </div>
+                                            <div class="form-group" style="position:relative; left:16px;">
+                                                <button type="submit" class="btn btn-default button-search">
+                                                    <span>Search</span>
+                                                </button>
+                                            </div>
+                                            @*<div class="col-lg-12 layered_filter_ul">
+                                                    <div class="price-range-input-panel">
+                                                        <input type="text" class="span2" value="" data-slider-min="0" data-slider-max="50000000" data-slider-step="100000" data-slider-value="[200000,20000000]" id="Sl_PriceRange">
+                                                        <br />
+                                                        <b class="pull-left">0 Đ</b> <b class="pull-right">50.000.000 Đ</b>
+                                                    </div>
+                                                    <div class="btn-filter-after-price-wrapper">
+                                                        <a id="Btn_FilterAfterPrice" class="btn-filter-after-price">
+                                                            <i class="fa fa-filter"></i>
+                                                        </a>
+                                                    </div>
+                                                </div>*@
+                                        </div>
+                                    </div>
+
+                                }
+                            </div>
+                        </section>
+                        @*<section id="new-products_block_right" class="block products_block">
+                                @Html.Partial("VerticalListProductBar", (IEnumerable<Domain.Concrete.SanPham>)@ViewBag.NewProducts, new ViewDataDictionary { { "Title", "Sản phẩm mới" } })
+                            </section>*@
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script id="data-template" type="x-tmpl-mustache">
+    <tr  class="table-bordered">
+        <td style="text-align:center;"><img src="{{HinhAnh}}" style="width:100px; height:100px;" /></td>
+        <td style="text-align:center;">{{Ten}}</td>
+
+        <td style="text-align:center;width:200px;">
+            <form action="@Url.Action("Update", "Cart")" method="post" class="frmUpdateCart">
+                <input type="hidden"
+                       name="id"
+                       value="{{Id}}" />
+                <div class="input-group">
+                    <input type="number"
+                           class="form-control"
+                           value="{{SoLuong}}"
+                           name="quantity"
+                           min="0" />
+                    <span class="input-group-btn">
+                        <button class="btn btn-success"
+                                id="submitUpdate"
+                                type="submit"
+                                style="font-size:10px;">
+                            Cập Nhật
+                            <i class="glyphicon glyphicon-refresh"></i>
+                        </button>
+                    </span>
+                </div>
+            </form>
+        </td>
+        <td style="text-align:center;">{{DonGia}}</td>
+        <td style="text-align:center;"> {{ThanhTien}}</td>
+        <td style="text-align:center;">
+            <form action="@Url.Action("Delete", "Cart")" method="post" id="deletedProduct">
+                <input type="hidden"
+                       name="id"
+                       value="{{Id}}" />
+                <button type="submit" class="label label-danger">
+                    Xóa
+                    <i class="glyphicon glyphicon-trash"></i>
+                </button>
+            </form>
+        </td>
+    </tr>
+</script>
+<script id="last-row" type="x-tmpl-mustache">
+    <tr class="table-bordered" >
+        <td colspan="2" class="table-bordered" style="font-weight:bold; text-align:center;">Tổng Số Lượng</td>
+
+        <td class="table-bordered" style="font-weight:bold;">{{TongSoLuong}}</td>
+        <td class="table-bordered" style="font-weight:bold; text-align:center;">
+            Tổng Thành Tiền
+        </td>
+
+        <td colspan="2" style="font-weight:bold;" class="table-bordered">
+            {{TongThanhTien}}
+        </td>
+    </tr>
+    </script>
+

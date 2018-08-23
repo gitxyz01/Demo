@@ -1,0 +1,67 @@
+﻿@model IEnumerable<Domain.Models.MenuViewModel>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_NewLayout.cshtml";
+}
+
+<h1 style="text-align:center;">Quản Lý Menu</h1>
+
+<h3>
+    <button class="btn btn-info glyphicon glyphicon-plus">
+        @Html.ActionLink("Thêm Mới", "Create", "ManageMenu", "", null)
+    </button>
+</h3>
+<table id="datatable" class="table table-striped table-bordered dataTable no-footer" role="grid" aria-describedby="datatable_info">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Text)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Link)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DisplayOrder)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Image)
+            </th>
+            <th>
+                Sửa
+            </th>
+            <th>Xóa</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Text)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Link)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DisplayOrder)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Image)
+            </td>
+            <td class="col-sm-1">
+                <a href="@Url.Action("Edit", "ManageMenu", new {id=item.MenuID })">
+                    <i class="glyphicon glyphicon-edit btn btn-success"> </i>
+                </a>
+            </td>
+            <td class="col-sm-1">
+                <a href="@Url.Action("ConfirmDelete", "ManageMenu",new {id=item.MenuID })">
+                    <i class="glyphicon glyphicon-trash btn btn-danger"> </i>
+                </a>
+            </td>
+        </tr>
+
+        }
+    </tbody>
+
+</table>
