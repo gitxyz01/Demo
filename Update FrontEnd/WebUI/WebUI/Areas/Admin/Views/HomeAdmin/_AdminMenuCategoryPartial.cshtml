@@ -1,0 +1,24 @@
+﻿@model List<Domain.Concrete.DanhMucSanPham>
+
+    @{int total = 0;
+    }
+
+    @*<label class="control-label col-md-2 col-sm-2 col-xs-12 btn-info">
+      Hiển Thị Theo Danh Mục Sản Phẩm
+    </label>*@
+
+    <select id="DrdListCategory" class="btn btn-success" style="font-size:1.2em; position:absolute; left:920px; top:110px;">
+        <option class="CategoryProductId" value="0">Tất Cả Danh Mục</option>
+        @foreach (var cate in Model)
+        {
+            <option class="CategoryProductId" value="@cate.CategoryProductID">
+                @cate.Ten @*-  @{int count = cate.SanPhams.Count();
+                    total += count;
+                    }
+                    @count*@
+            </option>
+        }
+    </select>
+
+
+
