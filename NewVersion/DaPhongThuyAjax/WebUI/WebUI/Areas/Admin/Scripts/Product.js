@@ -260,6 +260,7 @@ var ProductController = {
         });
         $('#DrdListCategory').off('change').on('change', function () {
             var id = $(this).val();
+            $("#ProviderTable").DataTable().clear();
             ProductController.loadData(id);
         });
     }
