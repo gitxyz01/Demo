@@ -232,6 +232,7 @@ var NewController = {
         });
         $('#DrdListNewCategory').off('change').on('change', function () {
             var categoryId = $(this).val();
+              $("#ProviderTable").DataTable().clear();
             NewController.loadData(categoryId);
         });
 
