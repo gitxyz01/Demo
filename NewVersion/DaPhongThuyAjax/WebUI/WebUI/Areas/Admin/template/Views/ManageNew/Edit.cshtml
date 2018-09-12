@@ -1,0 +1,90 @@
+﻿@model Domain.Concrete.TinTuc
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Areas/Admin/Views/Shared/_NewLayout.cshtml";
+}
+
+
+
+    <h1 style="text-align:center;">Chỉnh Sửa Tin Tức</h1>
+
+
+@using (Html.BeginForm("Edit", "ManageNew", FormMethod.Post, new { @class = "form-horizontal" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(x => x.HinhAnh)
+    @Html.HiddenFor(x => x.NewID)
+    @Html.HiddenFor(x => x.NoiDungTinTuc)
+    <div class="form-group">
+        @Html.LabelFor(model => model.Ten, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Ten, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Ten, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.ThuTuHienThi, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.ThuTuHienThi, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.ThuTuHienThi, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+            @Html.LabelFor(model => model.HinhAnh, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="editor-field col-md-10">
+            @Html.EditorFor(model => model.HinhAnh)
+            <input type="button" value="Chọn Ảnh ..." onclick="BrowseServer();" />
+            @Html.ValidationMessageFor(model => model.HinhAnh)
+        </div>
+        </div>
+  
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.NoiDungTinTuc, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.TextAreaFor(model => model.NoiDungTinTuc, new { @id = "ckeContent" })
+            <script>
+                CKEDITOR.replace('ckeContent');
+                CKFinder.setupCKEditor(null, '/ckfinder');
+
+            </script>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        function BrowseServer() {
+            var finder = new CKFinder();
+            //finder.basePath = '../';
+            finder.selectActionFunction = SetFileField;
+            finder.popup();
+        }
+        function SetFileField(fileUrl) {
+            document.getElementById('HinhAnh').value = fileUrl;
+        }
+    </script>
+
+
+    <div class="form-group">
+        @Html.LabelFor(x => x.HinhAnh, new { @class = "control-label col-sm-3" })
+        <div class="col-md-10">
+        </div>
+        @Html.ValidationMessageFor(model => model.HinhAnh)
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.NewCategoryID, "Danh Mục Tin Tức", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownListFor(x => x.NewCategoryID, new SelectList(ViewBag.newCategory, "NewCategoryId", "Ten"), new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.NewCategoryID, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <button type="submit" class="btn btn-info">Cập Nhật</button>
+        </div>
+    </div>
+}
+

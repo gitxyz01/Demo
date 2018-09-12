@@ -1,0 +1,160 @@
+﻿
+@{
+    ViewBag.Title = "Categories";
+    Layout = "~/Areas/Admin/Views/Shared/_NewLayout.cshtml";
+}
+
+
+<link href="~/Areas/Admin/Scripts/Plugins/css/TreeTableCss.css" rel="stylesheet" />
+
+<h1 style="text-align:center;">Danh Sách Danh Mục Tin Tức</h1>
+<h2>
+    <button class="btn btn-primary glyphicon glyphicon-plus" id="btn-Add">
+        Thêm Mới
+    </button>
+</h2>
+<table id="Table" class="table table-striped table-bordered dataTable no-footer  collapsed" role="grid" aria-describedby="datatable_info">
+    <thead>
+        <tr>
+            <th>Tên Danh Mục</th>
+            <th>Thứ Tự Hiển Thị</th>
+            <th>Trạng Thái</th>
+            <th>Ngày Tạo</th>
+            <th>Ngày Chỉnh Sửa</th>
+            <th>Sửa</th>
+            <th>Xóa</th>
+        </tr>
+    </thead>
+    <tbody id="table-data"></tbody>
+</table>
+<!-- Modal Create/Update-->
+<div class="modal fade" id="modalAddUpdate" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="modal-title" id="modalCrUdTitle" style="font-size:2em;">Thêm Mới Nhóm Sản Phẩm</div>
+
+            </div>
+            <div class="modal-body">
+                @using (Html.BeginForm("SaveNewCategory", "ManageCategory", new { area = "Admin" }, FormMethod.Post, new { @class = "form-horizontal frm-Create", enctype = "multipart/form-data" }))
+    {
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <input name="NewCategoryID" id="hid-Id" value="0" type="hidden" >
+
+            <div class="item form-group">
+                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="Ten">
+                   Tên Danh Mục<span class="required">*</span>
+                </label>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    <input id="txt-Name" name="Ten" required="required" class="form-control col-md-7 col-xs-12" placeholder="Nhập tên danh mục">
+                </div>
+            </div>
+            <div class="item form-group">
+                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="ParentId">
+                    Tên Nhóm Cha <span></span>
+                </label>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    <select class="form-control col-md-7 col-xs-12 drd-IsParent" name="ParentID">
+                        <option value="0">Không Có Nhóm Cha</option>
+                        </select>
+                </div>
+            </div>
+            <div class="item form-group">
+                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="SortOrder">
+                    Thứ Tự Hiển Thị <span class="required">*</span>
+                </label>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    <input type="number" id="txt-SortOrder" class="form-control col-md-7 col-xs-12" name="ThuTuHienThi"   placeholder="">
+                </div>
+            </div>
+            <div class="item form-group">
+                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="IsActive">
+                    Được sử dụng <span class="required"></span>
+                </label>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    <input type="checkbox" name="TrangThai" value="true" id="ckstatus" />
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success" id="btn-ctnCreate">Tiếp Tục Thêm Mới</button>
+                <button type="submit" class="btn btn-primary" id="btn-crOrUd">Thêm Mới/Cập Nhật</button>
+                <button type="button" class="btn btn-warning" data-dismiss="modal" id="dismisModal">Thoát</button>
+            </div>
+}
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Delete-->
+<div class="modal fade" id="modalDelete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="width:100em;">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="modal-title btn" id="resultDelete" style="font-size:1.25em;"></div>
+
+            </div>
+            <div class="modal-footer">
+                <div class="btn btn-secondary">
+                    <form action="@Url.Action("DeleteProductGroup", "ProductGroup")" method="get" id="frm-Delete">
+                        <input id="hid-IdDelete"
+                               type="hidden"
+                               name="id"
+                               value="0" />
+                        <button type="submit" class="btn btn-danger" id="submitDelete">
+                            <i class="glyphicon glyphicon-trash">Xóa</i>
+                        </button>
+                    </form>
+                </div>
+
+                <button type="button" class="btn btn-warning btn-info btn-reload" data-dismiss="modal" id="dismisModal">
+                    Thoát
+                </button>
+
+            </div>
+        </div>
+    </div>
+</div>
+<script id="data-dropdownParent" type="x-tmpl-mustache">
+    <option value="{{Id}}">{{Name}}</option>
+</script>
+<script id="data-template-Active" type="x-tmpl-mustache">
+    <tr data-tt-id="{{Id}}" data-tt-parent-id="{{ParentId}}">
+        <td>{{Name}}</td>
+        <td>{{SortOrder}}</td>
+        <td><label class=" btn-xs btn-success">Hoạt Động</label></td>
+        <td>{{CreatedDate}}</td>
+        <td>{{ModifiedDate}}</td>
+        <td>
+            <button class="btn btn-success glyphicon glyphicon-edit btn-edit" data-id="{{Id}}"></button>
+        </td>
+        <td class="col-sm-1">
+            <button type="button" class="btn btn-primary btn-danger btnDelete" data-id="{{Id}}">
+                <i class="glyphicon glyphicon-trash"></i>
+            </button>
+        </td>
+    </tr>
+</script>
+<script id="data-template-Locked" type="x-tmpl-mustache">
+    <tr data-tt-id="{{Id}}" data-tt-parent-id="{{ParentId}}">
+        <td>{{Name}}</td>
+        <td>{{SortOrder}}</td>
+        <td><label class=" btn-xs btn-danger">Khóa</label></td>
+        <td>{{CreatedDate}}</td>
+        <td>{{ModifiedDate}}</td>
+        <td>
+            <button class="btn btn-success glyphicon glyphicon-edit btn-edit" data-id="{{Id}}"></button>
+        </td>
+        <td class="col-sm-1">
+            <button type="button" class="btn btn-primary btn-danger btnDelete" data-id="{{Id}}">
+                <i class="glyphicon glyphicon-trash"></i>
+            </button>
+        </td>
+    </tr>
+</script>
+@section Scripts{
+    <script src="~/Plugins/mustache.min.js"></script>
+    <script src="~/Areas/Admin/Scripts/Plugins/jquery.treetable.js"></script>
+    <script src="~/Areas/Admin/Scripts/NewCategory.js"></script>
+}

@@ -1,0 +1,102 @@
+﻿@model IEnumerable<Domain.Models.OrderViewModel>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_NewLayout.cshtml";
+}
+
+
+
+<h1 style="text-align:center;">Danh Sách Đơn Hàng</h1>
+<table id="datatable" class="table table-striped table-bordered dataTable no-footer" role="grid" aria-describedby="datatable_info">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ShipName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ShipMobile)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ShipAdress)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ShipEmail)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Status)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Note)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CreateDate)
+            </th>          
+            <th>
+                @Html.DisplayNameFor(model => model.ModifiedDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ModifiedBy)
+            </th>
+            <th> Chi Tiết</th>
+            <th>Hủy</th>
+
+        </tr>
+    </thead>
+    <tbody>
+
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ShipName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ShipMobile)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ShipAdress)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ShipEmail)
+            </td>
+            <td>
+                @if (item.Status =="Đang Chờ") { 
+                <label class="btn-warning">
+                  <i class="glyphicon glyphicon-exclamation-sign"></i>  Đang Chờ
+                </label>
+                }
+                else
+                {
+                    <label class="btn-success">
+                        <i class="glyphicon glyphicon-check"></i> Đã Giao Hàng
+                </label>
+                }
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Note)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreateDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ModifiedDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ModifiedBy)
+            </td>
+            <td>
+                <a href="@Url.Action("OrderDetails", "ManageOrder",new { orderId = item.OrderId})">
+                    <i class="glyphicon glyphicon-edit btn btn-success"> </i>
+                </a>
+            </td>
+            <td>
+                <a href="@Url.Action("Delete", "ManageOrder")">
+                    <i class="glyphicon glyphicon-trash btn btn-danger"> </i>
+                </a>
+            </td>
+        </tr>
+        }
+    </tbody>
+
+</table>

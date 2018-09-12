@@ -1,0 +1,19 @@
+﻿@model List<Domain.Concrete.DanhMucTinTuc>
+
+@{int total = 0;
+}
+<select id="DrdListNewCategory" class="btn btn-success" style="font-size:1.2em; position:absolute; left:920px; top:110px;">
+    <option class="CategoryProductId" value="0">Tất Cả Danh Mục</option>
+    @foreach (var cate in Model)
+    {
+        <option class="CategoryProductId" value="@cate.NewCategoryID">
+            @cate.Ten @*-  @{int count = cate.SanPhams.Count();
+                total += count;
+                }
+                @count*@
+        </option>
+    }
+</select>
+
+
+
